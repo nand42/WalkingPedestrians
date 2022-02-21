@@ -83,7 +83,7 @@ P_0 &\to P_2 \\
 % D2Q9 diagram
 
 \import{draw/}{D2Q9_directions_arrows}
-Considering the (Figure \ref{fig:D2Q9}) all the transitions are associated to a specific $k$.
+Considering the (Figure \ref{fig:D2Q9_k_arrow}) all the transitions are associated to a specific $k$.
 This is a particular Markov Chain (see \ref{chap:MarkovChain} ) where there are a total of \emph{nine} states.
 Between these states the transitions always and only start from the $P_0$ state to go to the others $P_k$ states or itself.
 The same concept is graphically represented with the diagram in (Figure \ref{fig:diagram_MC_D2Q9}).
@@ -95,8 +95,8 @@ It means that for each position in $\Omega$ it's possible to say how likely is t
 Then, once in the new position, it's again possible to say the most probable direction that the pedestrian will choose.
 The same prediction is applicable to the whole space, mapped by the real datas.
 \import{draw/}{D2Q9_MarkovDiagram}
-With this structure it is then possible to create a tensor $A$ with three indices, or more for the other models.
-Taking into account the simplest model, as above, the tensor is $A_{x y k}$.
+With this structure it is then possible to create a tensor $A$ with three indices.
+Taking into account the simplest model, as above, the relative \emph{tensor} is $A_{x y k}$.
 Where every entries is the probability $p$ to move along the $k$ direction from the location $(x, y)$.
 Since the aim of every models is to simulate a pedestrian in the crowd, this tensor is the key to get to the result.
 
@@ -106,12 +106,9 @@ The conceptual step forward of the study is to not only consider the next positi
 Hence given a trajectory $\gamma$ in the grid space of a pedestrian that make a transition for each time step.
 For each point $P_0$ of $\gamma$ it is possible to determinate where it was before at $P_{-1}$ and where is going to be after at $P_{+1}$.
 The index that represents the \emph{next} position is $k$, meanwhile the index that represents the \emph{previous} position is $h$.
-For instance it is given the table of the coordinates and the two indexes related to the (Figure \ref{fig:diagram_MC_D2Q9}) in the  (Table \ref{tab:diagram_MC_D2Q9})
-
-
+For instance it is given the table of the coordinates and the two indexes related to the (Figure \ref{fig:diagram_MC_D2Q9}) in the (Table \ref{table:diagram_MC_D2Q9}).
 \begin{table}[h!]
 \centering
-\label{tab:diagram_MC_D2Q9}
 \begin{tabular}{|c|c|c|c|c|}
 \hline
 Time step & $x_g$ & $y_g$ & $k$-index & $h$-index  \\ \hline
@@ -130,8 +127,13 @@ Time step & $x_g$ & $y_g$ & $k$-index & $h$-index  \\ \hline
 \captionsetup{width=.6\linewidth}
 \caption{This is tabulated the trajectory of the same illustrative pedestrian as above in (Figure \ref{fig:diagram_MC_D2Q9}).
 Here is expressed the position time to time, the index of the following move and the index of the previous move.}
+\label{table:diagram_MC_D2Q9}
 \end{table}
-
+The \emph{tensor} associated to this model is characterized by a total of four indexes as $A_{x y k h}$.
+Every element of this tensor is now representing a certain probability to move away from a certain state to another.
+Taking into account the example in the (Table \ref{table:diagram_MC_D2Q9}), and considering this the only one possible trajectory.
+It is easy to see that the probability at $A_{x y k h} = A_{3, 3, 5, 4} = 1$ is maximum in the position $(3, 3)$.
+The probability for every other $k, h$ in the same position is zero, $A_{3, 3, k, h} = 0 \quad \forall \, k \neq 5, \, h \neq 4$.
 
 
 
