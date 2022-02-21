@@ -1,0 +1,52 @@
+%%
+%% Author: Dario Chinelli
+%% begin 2019-12-04
+%% last mod 2022-02-02
+%%
+
+% Preamble
+\documentclass[class=article, crop=false]{standalone}
+
+% Packages
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+
+% Document
+\begin{document}
+
+
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[->, >=stealth', auto, semithick, node distance=1.6cm]
+\tikzstyle{every state}=[fill=white, draw=black, thick, text=black, scale=1]
+\node[state]    (A)		   	{$P_0$};
+\node[state]    (E)[above of=A]   {$P_4$};
+\node[state]    (D)[left of=E]   	{$P_3$};
+\node[state]    (C)[left of=D]   	{$P_2$};
+\node[state]    (B)[left of=C]   	{$P_1$};
+\node[state]    (F)[right of=E]   	{$P_5$};
+\node[state]    (G)[right of=F]   	{$P_6$};
+\node[state]    (H)[right of=G]   	{$P_7$};
+\node[state]    (I)[right of=H]   	{$P_8$};
+\path
+(A) edge[loop below]  		node{$p_0$}  	(A)
+(A) edge[bend left, below] 		node{$p_1$}     (B)
+(A) edge[bend left, below] 		node{$p_2$}     (C)
+(A) edge[bend left, below]      	node{$p_3$}     (D)
+(A) edge[bend left, below]      	node{$p_4$}     (E)
+(A) edge[bend right, below]      	node{$p_5$}     (F)
+(A) edge[bend right, below]      	node{$p_6$}     (G)
+(A) edge[bend right, below]      	node{$p_7$}     (H)
+(A) edge[bend right, below]      	node{$p_8$}     (I);
+\end{tikzpicture}
+\caption{The Markov Chain diagram of the system. 
+The states are indicated with circles and labeled with $P_k$. 
+The transitions are indicated with arrows and labeled with theirs probability $p_k$}
+\label{fig:diagram_MC_D2Q9}
+\end{figure}
+
+
+
+
+\end{document}

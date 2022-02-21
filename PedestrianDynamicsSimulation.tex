@@ -1,0 +1,172 @@
+%%
+%% Author: Dario Chinelli
+%% begin 2019-12-04
+%% last mod 2022-02-02
+%%
+
+% Preamble
+\documentclass[10pt,a4paper]{report}
+\newcommand{\fontsmall}{\fontsize{5pt}{6pt}\selectfont}
+
+% Packages
+\usepackage[subpreambles=true]{standalone}
+\usepackage[english]{babel}
+\usepackage{import}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage[left=3cm, right=3cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{makeidx}
+\usepackage{pdfpages}
+\usepackage{subfig}
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+\usetikzlibrary{automata, arrows, positioning, calc}
+%\usepackage{tikz}
+%\usepackage{tikz-uml}
+\usepackage{color}   %May be necessary if you want to color links
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true, %set true if you want colored links
+    linktoc=all,     %set to all if you want both sections and subsections linked
+    linkcolor=black,  %choose some color if you want links to stand out
+}
+
+\makeindex
+
+% Document
+\begin{document}
+
+\begin{titlepage}
+	\topskip0pt
+	%\vspace*{\fill}
+	\centering
+	\vspace*{18mm}
+	\includegraphics[]{logo.png}\\
+	\vspace*{15mm}
+	\huge \textbf{\textsc{Università degli Studi di Ferrara}}\\
+	\Large \textsc{Corso di Laurea in Fisica}
+	
+	\vspace*{1.5cm}
+	\hrule width \hsize \kern 1mm \hrule width \hsize height 2pt
+	\vspace*{10mm}
+	\Huge \emph{\textbf{Statistical learning and simulating the paths of walking pedestrians}}
+	\vspace*{10mm}
+	\hrule width \hsize height 2pt
+	\vspace*{1mm}
+	\hrule width \hsize \kern 1mm
+	
+	\vspace*{15mm}
+	\begin{minipage}{0.45\textwidth}
+		\begin{flushleft} \Large
+			\emph{Relatori:}\\
+			\Large \textbf{Prof. Alessandro \textsc{Drago}}\\
+			\Large \textbf{Prof. Federico \textsc{Toschi}}\\
+			\vspace*{5mm}
+			\emph{Correlatore:}\\
+			\Large \textbf{Dr. Alessandro \textsc{Corbetta}}
+		\end{flushleft}
+	\end{minipage}
+	\begin{minipage}{0.45\textwidth}
+		\begin{flushright} \Large
+			\emph{Laureando:} \\
+			\Large \textbf{Dario \textsc{Chinelli}}
+		\end{flushright}
+	\end{minipage}
+	
+	\vspace*{20mm}
+	\Large \textsc{24 marzo 2022}\\
+	\vspace*{5mm}
+	\Large \textsc{Anno Accademico $2020-2021$}
+\end{titlepage}
+\restoregeometry
+
+% --- --- --- FIRST PAGE / ABSTRACT  SEPARATOR --- --- ---
+
+\begin{abstract}
+\import{sections/}{abstract}
+\end{abstract}
+
+
+% --- --- --- ABSTRACT / CONTENTS  SEPARATOR --- --- ---
+
+\tableofcontents
+
+
+% --- --- --- CHAPTERS  SEPARATOR --- --- ---
+
+\chapter{Introduction}
+
+\import{sections/}{introduction}
+
+% --- --- --- CHAPTERS  SEPARATOR --- --- ---
+
+\chapter{Pedestrian dynamics measurements}
+
+\section{Idea of the recording technique}
+\import{sections/}{idea_of_recording_technique}
+
+\section{Presenting datasets}
+\import{sections/}{Presenting_data_sets}
+
+\section{Technique of measure}
+\import{sections/}{technique_of_measure}
+
+
+% --- --- --- CHAPTERS  SEPARATOR --- --- ---
+
+\chapter{Background}
+
+\section{Markov Chain}
+\import{sections/}{markov_chain}
+
+\section{Cellular-Automata}
+\import{sections/}{cellular_automata}
+
+\section{Lattice-Boltzman}
+\import{sections/}{lattice_boltzman}
+
+
+% --- --- --- CHAPTERS  SEPARATOR --- --- ---
+
+\chapter{Propose data assimilation technique}
+
+\section{Approximation of path integrals: 3D histogram}
+\import{sections/}{path_integrals_3d_histogram}
+
+\section{Learning transition matrices from data}
+\import{sections/}{learning_transition_matrices}
+
+\section{Simulations}
+\import{sections/}{simulations}
+
+
+% --- --- --- CHAPTERS  SEPARATOR --- --- ---
+
+\chapter{Results}
+
+\section{Comparison of assimilation methods}
+\import{sections/}{results_comparison}
+
+\section{Simulation with generative models}
+\import{sections/}{results_simulation}
+
+
+% --- --- --- CHAPTERS  SEPARATOR --- --- ---
+
+\chapter{Discussion}
+
+\import{sections/}{discussion}
+
+
+% --- --- --- CHAPTERS  SEPARATOR --- --- ---
+
+\chapter{Appendix}
+
+\section{Package pathintegralanalytics - code description}
+\import{sections/}{package_pathIntegralAnalytics}
+
+
+\end{document}

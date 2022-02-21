@@ -1,0 +1,68 @@
+%%
+%% Author: Dario Chinelli
+%% begin 2019-12-04
+%% last mod 2022-02-02
+%%
+
+% Preamble
+\documentclass[class=article, crop=false]{standalone}
+
+% Packages
+\usepackage[subpreambles=true]{standalone}
+\usepackage{import}
+\usepackage{graphicx}
+\usepackage{amsmath}
+
+
+
+% Document
+\begin{document}
+The aim of this work is to clarify the possibility to analyze real life datasets and simulate the pedestrian crowd starting from the Lattice model.
+
+\section{Assimilating pedestrian dynamics}
+
+
+
+
+\section{Challenges}
+
+\paragraph{Starting from real data how can we define a good model to simulate a pedestrian in the crowd flow?}
+In this type of system there is a multitude of \emph{forces} that determinate the path of a single pedestrian.
+So let's take into account a single pedestrian $P$ that walks in a certain space.
+The first type of interaction is the structure where $P$ can or cannot walk thought, that is defined as the whole domain $\Omega$.
+The second interaction is between $P$ and the other pedestrians.
+Every pedestrian needs a personal space all around, that is variable due the circumstance and it is not easy to be analytically determinate.
+A third type of interaction are random events along the $P$'s path, real world events.
+...
+
+\paragraph{How to visualise the pedestrian's path using a multi-dimensional histogram?}
+It is possible to plot every single trajectory, but this lead to a chaotic data representation and not so functional nor readable.
+It is also easily possible to plot the \emph{heatmap} of a dataset to analyse the most "walked" areas.
+Even if this second plot choice can takes into account more trajectories than the first and still be readable, it has a problem.
+This second lead to a representation where the time dependency is completely lost.
+...
+
+
+
+
+
+\section{Relevance}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

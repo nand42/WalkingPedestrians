@@ -1,0 +1,36 @@
+%%
+%% Author: Dario Chinelli
+%% begin 2019-12-04
+%% last mod 2022-02-02
+%%
+
+% Preamble
+\documentclass{standalone}
+
+% Packages
+\usepackage[subpreambles=true]{standalone}
+\usepackage{import}
+
+% Document
+\begin{document}
+
+\textbf{[ENG]}
+The dynamics of pedestrian changes considerably depending on the surrounding space,
+not just for the intrinsic chaotic movements that people does walking but also due to the reciprocal collisions and environment condition.
+We have considered some scenarios to implement models and a tools that can gives us simulations of the movements of a single pedestrian.
+In order to properly simulate a pedestrians' dynamic, is to have information about the probability to change direction after every step, in every positions of the trajectory.
+This approach is linked to the path integral in the way that: given a trajectory, it's possible to say with certain probability where the next step is.
+This mathematical approach is computationally expensive, even more with the big amount of data we are using.
+So we started implementing a discrete system and a easy model and than we moved to more complex model.
+In total we get four types of models: two time dependent and tow independent.
+From now on we'll call those: D2Q9 and D2Q9Q9 the firsts two;
+TD2Q9 and TD2Q9Q9 the others two.
+
+\textbf{[ITA]}
+L'obiettivo scientifico è stato creare un metodo, ispirato al Lattice-Boltzman, con cui apprendere, a partire
+da dati reali, la dinamica pedonale e quantificarla in termini di matrici di transizione su reticolo.
+L'obiettivo fondamentale è riuscire a quantificare il campo di probabilità, trovato utilizzando diversi modelli.
+Questo campo ci permette di studiare la dinamica e creare simulazioni di pedoni e traiettorie le cui statistiche
+sono indistinguibili per costruzione dalle statistiche delle traiettorie reali
+
+\end{document}
