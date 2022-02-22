@@ -9,7 +9,7 @@
 
 % Packages
 \usepackage[subpreambles=true]{standalone}
-\usepackage{import}
+%\usepackage{import}
 \usepackage{graphicx}
 \usepackage{amsmath}
 
@@ -86,7 +86,7 @@ P_0 &\to P_2 \\
 Considering the (Figure \ref{fig:D2Q9_k_arrow}) all the transitions are associated to a specific $k$.
 This is a particular Markov Chain (see \ref{chap:MarkovChain} ) where there are a total of \emph{nine} states.
 Between these states the transitions always and only start from the $P_0$ state to go to the others $P_k$ states or itself.
-The same concept is graphically represented with the diagram in (Figure \ref{fig:diagram_MC_D2Q9}).
+The same concept is graphically represented with the diagram in (Figure \ref{diagram:diagram_MC_D2Q9}).
 To every transition is associated a certain probability to happen.
 Formally this probability is given by the initial and the final states: $p_{if}$.
 Since there always is the same starting state, it is possible to omit it.
@@ -102,11 +102,12 @@ Since the aim of every models is to simulate a pedestrian in the crowd, this ten
 
 
 \subsection{Model D2Q9Q9}
-The conceptual step forward of the study is to not only consider the next position, but also the previous.
+The conceptual step forward of the study is to consider the next position, but also the previous one.
+Similarly to the previous model, this is a \emph{time-independent} model.
 Hence given a trajectory $\gamma$ in the grid space of a pedestrian that make a transition for each time step.
 For each point $P_0$ of $\gamma$ it is possible to determinate where it was before at $P_{-1}$ and where is going to be after at $P_{+1}$.
 The index that represents the \emph{next} position is $k$, meanwhile the index that represents the \emph{previous} position is $h$.
-For instance it is given the table of the coordinates and the two indexes related to the (Figure \ref{fig:diagram_MC_D2Q9}) in the (Table \ref{table:diagram_MC_D2Q9}).
+For instance it is given the table of the coordinates and the two indexes related to the (Figure \ref{diagram:diagram_MC_D2Q9}) in the (Table \ref{table:diagram_MC_D2Q9}).
 \begin{table}[h!]
 \centering
 \begin{tabular}{|c|c|c|c|c|}
@@ -125,31 +126,76 @@ Time step & $x_g$ & $y_g$ & $k$-index & $h$-index  \\ \hline
 11        & 3 & 9 & 0 & 8 \\ \hline
 \end{tabular}
 \captionsetup{width=.6\linewidth}
-\caption{This is tabulated the trajectory of the same illustrative pedestrian as above in (Figure \ref{fig:diagram_MC_D2Q9}).
+\caption{This is tabulated the trajectory of the same illustrative pedestrian as above in (Figure \ref{diagram:diagram_MC_D2Q9}).
 Here is expressed the position time to time, the index of the following move and the index of the previous move.}
 \label{table:diagram_MC_D2Q9}
 \end{table}
 The \emph{tensor} associated to this model is characterized by a total of four indexes as $A_{x y k h}$.
-Every element of this tensor is now representing a certain probability to move away from a certain state to another.
+Every element of this tensor is now representing a certain probability to move away from a state to another.
 Taking into account the example in the (Table \ref{table:diagram_MC_D2Q9}), and considering this the only one possible trajectory.
 It is easy to see that the probability at $A_{x y k h} = A_{3, 3, 5, 4} = 1$ is maximum in the position $(3, 3)$.
-The probability for every other $k, h$ in the same position is zero, $A_{3, 3, k, h} = 0 \quad \forall \, k \neq 5, \, h \neq 4$.
-
-
-
-
-
+The probability for every other $k, h$ in the same position is zero, $A_{3, 3, k, h} = 0 \quad for \, k \neq 5, \, h \neq 4$.
+Instead, if two trajectories pass by the same position in the grid but with different directions, this probability is distributed along two directions.
+This is the scenario represented in (Figure \ref{fig:two_trj_same_cell}), where there are two trajectories.
+Those pass by the same cell at different times, but leave in the model $D2Q9Q9$ a strong influence.
+In this case $A_{2, 2, 5, 7} = 1$ and $A_{2, 2, 6, 8} = 1$.
+For the previous model $D2Q9$ in the same position it would be, with $A_{x y k}$, $A_{2, 2, 5} = 0.5$ and $A_{2, 2, 6} = 0.5$.
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.1]{draw/eg_distribution_two_trajectories_1}
+\captionsetup{width=.7\linewidth}
+\caption{(TO DO WITH TIKZ) Two paths passing by the same cell, in green, with different directions.
+The numbers in red are defining the values of the $k$-index for every step.
+The numbers in blue are the values of the $h$-index for every step.}
+\label{fig:two_trj_same_cell}
+\end{figure}
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.5]{draw/eg_distribution_two_trajectories_2}
+\captionsetup{width=.7\linewidth}
+\caption{(TO DO WITH TABLES) Two paths passing by the same cell, with different directions.}
+\label{fig:two_trj_same_cell}
+\end{figure}
 
 \subsection{Model TD2Q9}
+This module takes into account all the tools offered by the \emph{D2Q9 model}.
+But time is now relevant and so this is a \emph{time-dependent} model.
+\paragraph{Time}
+It is important to describe properly what is \emph{time} in this study.
+Lets start from what is not: time is not the universal time, like UTC.
+Time here is discrete and it's defined also as \emph{time step}.
+It is divided in seconds, using the \emph{unix time} or \emph{UNIX Epoch time}.
+Every step in time define a new state along the time axes, it is possible to imagine it as a new dimension.
+For each pedestrian path, time start at the entrance in the field and ends at the exit of it.
+So time is relative to each trajectories and not global.
 
+The definition of a \emph{state} is not just by the position in space but is given by $x, y, t$.
+In this model, pedestrians moves along three axes: two dimensions in space and one in time.
+The \emph{tensor} representing the probability to move is defined by $A_{t x y k}$.
+With this structure it is possible to associate the velocity to the time step.
+This gives the possibility to differentiate when a trajectory is going to exit or is just entered, when giving the probability to move.
+Lets make an example and consider a position close to the map border $P_b = (x_b, y_b)$, something like in (Figure \ref{fig:boundary_position}).
+If it's not known the time of this position $P_b$ the probabilities to go to the center of the map or out of it are non zero.
+So it's not possible, given $P_b$, to really distinguish if the pedestrian is going out or not.
+But if the time is taken into account it's necessary to distinguish if the pedestrian is at the beginning of it's path or at the end.
+Lets start again from the position $P_b$.
+If it's at the beginning in time steps, the more probable move will be to the center.
+If some time is passed inside the map, it will have higher probability to go out from the map.
 
-
-
-
-
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.1]{draw/Boundary_position_in_out}
+\captionsetup{width=.6\linewidth}
+\caption{The boundary position $P_b$ considered is the green cell.
+When time is \emph{small}, the trajectory is at the beginning, yellow positions are more likely than orange positions.
+When time is \emph{big}, the trajectory is at the ending, yellow positions are less likely than orange positions.}
+\label{fig:boundary_position}
+\end{figure}
 
 
 \subsection{Model TD2Q9Q9}
+This model is the extension of the previous \emph{TD2Q9} to the \emph{D2Q9Q9} method, where acceleration is taken into account.
+This is the most 
 
 
 
