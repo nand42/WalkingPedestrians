@@ -60,7 +60,7 @@ This lead the discussion directly to the first model $D2Q9$ in the next paragrap
 
 
 %% --- SECTION SEPARATOR---
-
+\FloatBarrier
 \subsection{Model D2Q9} \label{chap:Model_D2Q9}
 The simplest model considered here is called $D2Q9-model$.
 This model is a time-independent and it consider the velocity of the pedestrian.
@@ -69,22 +69,25 @@ It uses the nine closest possible positions where a pedestrian could go from tha
 With the $D2Q9-model$ is than possible to know, for each position $(x_0, y_0)$, the probability to go up, down, left, right or a combination of those movements.
 \paragraph{Transitions} from the initial position $P_0=(x_0, y_0)$ to the next closest cell in the grid $P_k$ are defined by the index $k$.
 So that the index $k$ gives the direction of the transition.
-For instance a transition from $P_0$ to $P_1$ and a transition from $P_0$ to $P_2$ are defined by:
-\begin{equation*}
+To explicit all the transitions from $P_0$ to $P_k$, those transformation are defined in (Equation \ref{eq:transitions_D2Q9}) and represented as diagram in (Figure \ref{fig:D2Q9_k_arrow}):
+\begin{equation}
 \begin{split}
-P_0 &\to P_1 \\
-(x_0, y_0) &\to (x_0+1, y_0)
-\end{split}\quad\quad\quad
-\begin{split}
-P_0 &\to P_2 \\
-(x_0, y_0) &\to (x_0, y_0+1)
+P_0 &\to P_0 : \quad (x_0, y_0) \to (x_0, y_0) \\
+P_0 &\to P_1 : \quad (x_0, y_0) \to (x_0+1, y_0) \\
+P_0 &\to P_2 : \quad (x_0, y_0) \to (x_0, y_0+1) \\
+P_0 &\to P_3 : \quad (x_0, y_0) \to (x_0-1, y_0) \\
+P_0 &\to P_4 : \quad (x_0, y_0) \to (x_0, y_0-1) \\
+P_0 &\to P_5 : \quad (x_0, y_0) \to (x_0+1, y_0+1) \\
+P_0 &\to P_6 : \quad (x_0, y_0) \to (x_0-1, y_0+1) \\
+P_0 &\to P_7 : \quad (x_0, y_0) \to (x_0-1, y_0-1) \\
+P_0 &\to P_8 : \quad (x_0, y_0) \to (x_0+1, y_0-1) \\
 \end{split}
-\end{equation*}
-% D2Q9 diagram
+\label{eq:transitions_D2Q9}
+\end{equation}
 
 \import{draw/}{D2Q9_directions_arrows}
 Considering the (Figure \ref{fig:D2Q9_k_arrow}) all the transitions are associated to a specific $k$.
-This is a particular Markov Chain (see \ref{chap:MarkovChain} ) where there are a total of \emph{nine} states.
+This is a particular Markov Chain (Ref.Chap. \ref{chap:MarkovChain} ) where there are a total of \emph{nine} states.
 Between these states the transitions always and only start from the $P_0$ state to go to the others $P_k$ states or itself.
 The same concept is graphically represented with the diagram in (Figure \ref{diagram:diagram_MC_D2Q9}).
 To every transition is associated a certain probability to happen.
@@ -99,8 +102,33 @@ With this structure it is then possible to create a tensor $A$ with three indice
 Taking into account the simplest model, as above, the relative \emph{tensor} is $A_{x y k}$.
 Where every entries is the probability $p$ to move along the $k$ direction from the location $(x, y)$.
 Since the aim of every models is to simulate a pedestrian in the crowd, this tensor is the key to get to the result.
+In general it's not easy to represent the tensor $A$ in all following models, but it's possible for this first one as plotted in (Figure \ref{fig:TensorA_D2Q9}).
+It shows a $3\times3$ matrix of figures.
+Each one is referred to a certain value of the $k$-index.
+Each figure's position is in reference to the usual $D2Q9$ map, similarly as in (Figure \ref{fig:D2Q9_k}).
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.35]{fig/figure_trainf10_all_trajectories_Dx200_Dy100_TensorA_D2Q9}
+\captionsetup{width=.6\linewidth}
+\caption{Each figure represents the probability in every position to move along a certain direction, defined by the $k$-index.}
+\label{fig:TensorA_D2Q9}
+\end{figure}
 
 
+
+
+
+
+
+
+
+
+
+
+
+%% --- SECTION SEPARATOR---
+\FloatBarrier
 \subsection{Model D2Q9Q9}
 The conceptual step forward of the study is to consider the next position, but also the previous one.
 Similarly to the previous model, this is a \emph{time-independent} model.
@@ -157,6 +185,8 @@ The numbers in blue are the values of the $h$-index for every step.}
 \label{fig:two_trj_same_cell}
 \end{figure}
 
+%% --- SECTION SEPARATOR---
+\FloatBarrier
 \subsection{Model TD2Q9}
 This module takes into account all the tools offered by the \emph{D2Q9 model}.
 But time is now relevant and so this is a \emph{time-dependent} model.
@@ -192,10 +222,15 @@ When time is \emph{big}, the trajectory is at the ending, yellow positions are l
 \label{fig:boundary_position}
 \end{figure}
 
-
+%% --- SECTION SEPARATOR---
+\FloatBarrier
 \subsection{Model TD2Q9Q9}
 This model is the extension of the previous \emph{TD2Q9} to the \emph{D2Q9Q9} method, where acceleration is taken into account.
-This is the most 
+With this method it is associated a tensor $A_{t x y k h}$, with obvious notation in reference to the previous paragraphs.
+
+
+
+
 
 
 
