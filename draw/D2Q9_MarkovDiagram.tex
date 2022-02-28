@@ -18,6 +18,7 @@
 
 \begin{figure}[h!]
 \centering
+\resizebox{0.6\textwidth}{!}{%
 \begin{tikzpicture}[->, >=stealth', auto, semithick, node distance=1.6cm]
 \tikzstyle{every state}=[fill=white, draw=black, thick, text=black, scale=1]
 \node[state]    (A)		   	{$P_0$};
@@ -40,6 +41,7 @@
 (A) edge[bend right, below]      	node{$p_7$}     (H)
 (A) edge[bend right, below]      	node{$p_8$}     (I);
 \end{tikzpicture}
+}%
 \captionsetup{width=.8\linewidth}
 \caption{The Markov Chain diagram of the system. 
 The states are indicated with circles and labeled with $P_k$. 
