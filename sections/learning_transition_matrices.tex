@@ -168,6 +168,7 @@ This is the scenario represented in (Figure \ref{fig:two_trj_same_cell}), where 
 Those pass by the same cell at different times, but leave in the model $D2Q9Q9$ a strong influence.
 In this case $A_{2, 2, 5, 7} = 1$ and $A_{2, 2, 6, 8} = 1$.
 For the previous model $D2Q9$ in the same position it would be, with $A_{x y k}$, $A_{2, 2, 5} = 0.5$ and $A_{2, 2, 6} = 0.5$.
+In (Table \ref{table:two_trj_same_cell}) are explicitly expressed the positions and the values of $k$ and $h$ for the two illustrative paths.
 \begin{figure}[h]
 \centering
 \includegraphics[scale=0.1]{draw/eg_distribution_two_trajectories_1}
@@ -182,8 +183,19 @@ The numbers in blue are the values of the $h$-index for every step.}
 \includegraphics[scale=0.5]{draw/eg_distribution_two_trajectories_2}
 \captionsetup{width=.7\linewidth}
 \caption{(TO DO WITH TABLES) Two paths passing by the same cell, with different directions.}
-\label{fig:two_trj_same_cell}
+\label{table:two_trj_same_cell}
 \end{figure}
+
+\paragraph{Cross trajectories}
+A common situation when looking at the trajectories is to find intersections with two different initial directions.
+Taking into account the previous example, where two pedestrians cross the field very differently.
+One from the left-down to the right-up corners and the other from the right-down to the left-up corners.
+The intersection that is formed from this two paths is the highlighted green cell in (Figure \ref{fig:two_trj_same_cell}).
+As mentioned before, the simpler model $D2Q9$ has more problems with this situation than the $D2Q9Q9$.
+The reason is that for the $D2Q9$ it is taken into account the velocity on a particular cell so it is considering instantaneous direction. 
+When simulating pedestrian arrive at that intersection, is inevitable to get a probability to \emph{change} directions and go back.
+This situation is one of the deeper reason to change model to $D2Q9Q9$ to take into account also the previous position.
+In fact, in this situation a simulated pedestrian would not change direction for the second model, because it has probability zero to make it.
 
 %% --- SECTION SEPARATOR---
 \FloatBarrier
@@ -216,7 +228,7 @@ If some time is passed inside the map, it will have higher probability to go out
 \centering
 \includegraphics[scale=0.1]{draw/Boundary_position_in_out}
 \captionsetup{width=.6\linewidth}
-\caption{The boundary position $P_b$ considered is the green cell.
+\caption{(TO DO WITH TIKZ) The boundary position $P_b$ considered is the green cell.
 When time is \emph{small}, the trajectory is at the beginning, yellow positions are more likely than orange positions.
 When time is \emph{big}, the trajectory is at the ending, yellow positions are less likely than orange positions.}
 \label{fig:boundary_position}
