@@ -30,27 +30,37 @@ It is possible to see along the trajectories where is the more probable directio
 To describe this lets take into account just a few real trajectories, with a common path and and opposite directions.
 To do so, here are considered five pedestrians in (Figure \ref{fig:5pids_trjl}), with two representations:
 one is plotting the actual lines in the field (Figure \ref{fig:5pids_trjlines}) and the other is a heat-map that describes where pedestrians passed through (Figure \ref{fig:5pids_trjlhist}).
-\begin{figure}[h]
-    \centering
-    \subfloat[Trajectories lines of five "real" pedestrians.]{
-        \label{fig:5pids_trjlines}
-        \includegraphics[ width=0.45\textwidth]{fig/5pids/figure_trainf10_few_trajectories_Dx200_Dy100_TRJLINES}
-    }\quad
-    \subfloat[Trajectories heatmap of five "real" pedestrians.]{
-        \label{fig:5pids_trjlhist}
-        \includegraphics[ width=0.4\textwidth]{fig/5pids/figure_trainf10_few_trajectories_Dx200_Dy100_TRJHIST}
-    }
-    \captionsetup{width=.8\linewidth}
-    \caption{Representation of five real trajectories from dataset.}
-    \label{fig:5pids_trjl}
+
+
+\begin{figure}[ht]
+\begin{minipage}[c]{0.5\linewidth}
+\centering
+
+\includegraphics[scale=0.17]{fig/5pids/figure_trainf10_few_trajectories_Dx200_Dy100_TRJLINES}
+
+\captionsetup{width=.8\linewidth}
+\caption{Trajectories lines of five "real" pedestrians.}
+\label{fig:5pids_trjlines}
+\end{minipage}
+\begin{minipage}[c]{0.5\linewidth}
+\centering
+
+\includegraphics[scale=0.17]{fig/5pids/figure_trainf10_few_trajectories_Dx200_Dy100_TRJHIST}
+
+\captionsetup{width=.8\linewidth}
+\caption{Representation of five real trajectories from dataset.}
+\label{fig:5pids_trjl}
+\end{minipage}
 \end{figure}
+
+
 \paragraph{Velocities plot}
 A significant plot to understand those paths is the one that compare the velocity along the two axes $x$ and $y$.
 In this example it describes how some trajectories are walking left and others are going right, see the (Figure \ref{fig:5pids_velhist}).
 This plot is made as heat-map, that means each cell gives the intensity of that unique combination of velocities.
 \begin{figure}[h]
 \centering
-\includegraphics[scale=0.2]{fig/5pids/figure_trainf10_few_trajectories_Dx200_Dy100_VELHIST}
+\includegraphics[scale=0.18]{fig/5pids/figure_trainf10_few_trajectories_Dx200_Dy100_VELHIST}
 \captionsetup{width=.5\linewidth}
 \caption{Comparison between velocity along the two directions $v_x$ and $v_y$.}
 \label{fig:5pids_velhist}
@@ -101,6 +111,14 @@ The tensor $A$ is used to get the probability for each of the nine directions.
 So that the initial position, chosen from the group of the start positions, is associated to the time $t=0$.
 When this input is given to the algorithm it read the array of the possible transitions from the actual cell to the next.
 Then it run a Monte Carlo trough that array and returns the corresponding direction randomly chosen with different probabilities.
+For the second position it will assign time $t=1$ with the new coordinates, running another step.
+And so on, one step at the time, moving through the field and increasing the time for each synthetic pedestrian.
+It is possible to simulate one trajectory or hundred, if more than one it will not consider the interactions between those new synthetic.
+This fact may be useful to analyze different scenarios in the same crowd.
+As also said before, this model takes into account a real-life environment and make possible the simulations consequentially to the selected scenario.
+Choosing a different one lead to very different simulations.
+Choosing a scenario and running a multitude of simulations lead to a complete \emph{tree} of possible paths.
+The path that will be followed more will be the most probable one.
 
 \paragraph{Examples to explain the algorithm}
 The (Figure \ref{fig:D2Q9_FirstEx}) represents a scenario where in a certain position it is associated a distribution of probability that make certain the evolution of the system.
@@ -114,15 +132,129 @@ For sure the most probable choice is to go Right, the second is to go Down and t
 All the other directions follows as less probable, but with a non-zero probability.
 	\import{draw/}{D2Q9_example_distribution}
 
-
-
-
-
-
+\paragraph{Stop the step}
+The simulation of a singular pedestrian has to be stopped by some kind of trigger.
+The first trigger is applied when the synthetic pedestrian touches the border of the field.
+The other trigger used in this work is made by setting the maximum value for the proper time of each synthetic pedestrian.
+Both those triggers must stop the counting of synthetic pedestrian's time and stop calculating the next move for those trajectories.
+This may lead to a distribution of the trajectories' length.
+That is force cut at the upper limit, imposed by the simulation setup, and depend on when every trajectory touches the border.
 
 
 \FloatBarrier
 \subsection{Distribution simulation}
+The analysis on the probability distribution tensor make possible to determinate \emph{which trajectory is more likely to be chosen}.
+This method propose an approximation of the general problem called \emph{path integral}.
+This method is built on a discrete system of time, space and "directions" of the momentum.
+With this approximation it is possible to evaluate the probability for a trajectory, starting from a certain position.
+So lets assume the initial position as $(x_0, y_0)$, the trajectory $\gamma$ that start from that point which path well follows?
+If a \emph{tensor} of the probability was created before it is possible to calculate the most probable $\gamma$ starting from that point.
+Could be also very interesting to change the question to: how likely is this $\gamma$ that i'm watching?
+The answer to the last question may be satisfied by multiplying the value of each transition from the starting point to the end.
+
+\paragraph{Simple example}
+The aim of this paragraph is to give a simplistic example.
+Assume a finite grid of cell, a $6\times3$ matrix, where $x$ is horizontal and $y$ is vertical.
+Assume that for each position $(x, y)$ is given a vector of \emph{nine} entries, that is exactly the $D2Q9$-model.
+Assume a finite number of possible move distributions: three for the first example.
+Lets represent the vector in the form of a matrix, referencing to the (Figure \ref{fig:D2Q9_k}).
+Lets call them $A, B, C, D$ with following structure:
+\begin{equation}
+\begin{split}
+A=
+\left(
+\begin{array}{ccc}
+ 0 &  0 & 0  \\
+ 0 &  0 & 1  \\
+ 0 &  0 & 0  
+\end{array}
+\right)
+\end{split}\quad
+\begin{split}
+B=
+\left(
+\begin{array}{ccc}
+ 0 &  0 & 0  \\
+ 0 &  0 & 0.3  \\
+ 0 &  0 & 0.7  
+\end{array}
+\right)
+\end{split}\quad
+\begin{split}
+C=
+\left(
+\begin{array}{ccc}
+ 0 &  0 & 0.7  \\
+ 0 &  0 & 0.3  \\
+ 0 &  0 & 0  
+\end{array}
+\right)
+\end{split}\quad
+\begin{split}
+D=
+\left(
+\begin{array}{ccc}
+ 0 &  0 & 0  \\
+ 0 &  1 & 0  \\
+ 0 &  0 & 0  
+\end{array}
+\right)
+\end{split}
+\label{equation:simplistic_example_transitions}
+\end{equation}
+remembering that the sum of the vector's entries must be $1$.
+Vector $A$ force the movement to go Right.
+Vector $B$ allows two possible directions but going Right is less probable than going Right-Down.
+Similarly to the previous, vector $C$ allows two possible directions but going Right is less probable than going Right-Up.
+The last vector $D$ imposes to stand still and for the scope of this example is useful to stop the steps.
+
+\begin{figure}[ht]
+\begin{minipage}[c]{0.5\linewidth}
+\centering
+
+\includegraphics[scale=0.1]{draw/Thesis_plots/Thesis_plots.001}
+\captionsetup{width=.8\linewidth}
+\caption{Space of the simplistic example. Every letter correspond to a specific distribution of possible transitions, referred to the (Equation \ref{equation:simplistic_example_transitions}).}
+\label{fig:simplistic_example_1}
+
+\end{minipage}
+\begin{minipage}[c]{0.5\linewidth}
+\centering
+
+\includegraphics[scale=0.1]{draw/Thesis_plots/Thesis_plots.002}
+\captionsetup{width=.8\linewidth}
+\caption{Space of the simplistic example. Every letter correspond to a specific distribution of possible transitions, referred to the (Equation \ref{equation:simplistic_example_transitions}).}
+\label{fig:simplistic_example_2}
+
+\end{minipage}
+\begin{minipage}[c]{0.5\linewidth}
+\centering
+
+\includegraphics[scale=0.1]{draw/Thesis_plots/Thesis_plots.005}
+\captionsetup{width=.8\linewidth}
+\caption{Space of the simplistic example. Every letter correspond to a specific distribution of possible transitions, referred to the (Equation \ref{equation:simplistic_example_transitions}).}
+\label{fig:simplistic_example_5}
+
+\end{minipage}
+\begin{minipage}[c]{0.5\linewidth}
+\centering
+
+\includegraphics[scale=0.1]{draw/Thesis_plots/Thesis_plots.004}
+\captionsetup{width=.8\linewidth}
+\caption{Space of the simplistic example. Every letter correspond to a specific distribution of possible transitions, referred to the (Equation \ref{equation:simplistic_example_transitions}).}
+\label{fig:simplistic_example_4}
+
+\end{minipage}
+\end{figure}
+
+
+
+
+
+
+
+
+
 
 
 
