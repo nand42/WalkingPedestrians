@@ -43,19 +43,18 @@ To lighten up the notation when speaking of \emph{grid space} it is simply used 
 In reference to the (Figure \ref{fig:D2Q9_k}).
 This \emph{map} is set for each position $(x_0, y_0)$ in the grid space and it represents the eight neighbors and the central position where a pedestrian could go.
 Each direction will be associated to a certain transition probability.
-\import{draw/}{D2Q9_directions}
+	\import{draw/}{D2Q9_directions_coordinates}
 When a trajectory change position, in the grid space (Figure \ref{fig:D2Q9_c}), from $P_0=(x_0, y_0)$ to $P_1=(x_1, y_1)$ is associated a transition.
 The transition is identified by a number $k = 0,1,...,8$ such that is unique.
 It is derived from the series of coordinates for each trajectory and each step in time.
 When the calculation is made for each step, for every position in time is also associated a transition number, that represents where is going to go in the next step.
-\import{draw/}{D2Q9_directions_coordinates}
 If this transition is associated to the change in position it identify a certain velocity, as vector, with a certain direction.
 Iterating this procedure to the entire pedestrian's trajectory it is possible to get something like what's illustrated in the (Figure \ref{illustrate_eg_path}).
 In that figure it is possible to distinguish the path in the continuous space and the discrete path in the grid space.
 It also shows the direction of the next movement for each position with arrows that are consistent with the velocity arrows in each position.
 The numbers are the value of the $k$-index in each position, it is solid with the maps above.
 This lead the discussion directly to the first model $D2Q9$ in the next paragraph.
-\import{draw/}{illustrate_eg_path}
+	\import{draw/}{illustrate_eg_path}
 
 
 
@@ -85,7 +84,7 @@ P_0 &\to P_8 : \quad (x_0, y_0) \to (x_0+1, y_0-1) \\
 \label{eq:transitions_D2Q9}
 \end{equation}
 
-\import{draw/}{D2Q9_directions_arrows}
+	\import{draw/}{D2Q9_directions_arrows}
 Considering the (Figure \ref{fig:D2Q9_k_arrow}) all the transitions are associated to a specific $k$.
 This is a particular Markov Chain (Ref.Chap. \ref{chap:MarkovChain} ) where there are a total of \emph{nine} states.
 Between these states the transitions always and only start from the $P_0$ state to go to the others $P_k$ states or itself.
@@ -97,7 +96,7 @@ So that the probability of the transition from $P_0$ to $P_k$ is expressed by $p
 It means that for each position in $\Omega$ it's possible to say how likely is to "step forward" or "turn right" and so on.
 Then, once in the new position, it's again possible to say the most probable direction that the pedestrian will choose.
 The same prediction is applicable to the whole space, mapped by the real datas.
-\import{draw/}{D2Q9_MarkovDiagram}
+	\import{draw/}{D2Q9_MarkovDiagram}
 With this structure it is then possible to create a tensor $A$ with three indices.
 Taking into account the simplest model, as above, the relative \emph{tensor} is $A_{x y k}$.
 Where every entries is the probability $p$ to move along the $k$ direction from the location $(x, y)$.
