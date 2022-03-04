@@ -102,7 +102,7 @@ So that the initial position, chosen from the group of the start positions, is a
 When this input is given to the algorithm it read the array of the possible transitions from the actual cell to the next.
 Then it run a Monte Carlo trough that array and returns the corresponding direction randomly chosen with different probabilities.
 
-Here some examples to explain the algorithm.
+\paragraph{Examples to explain the algorithm}
 The (Figure \ref{fig:D2Q9_FirstEx}) represents a scenario where in a certain position it is associated a distribution of probability that make certain the evolution of the system.
 In the figure is described that is not possible to move anywhere except to the Right direction.
 For the second example in (Figure \ref{fig:D2Q9_SecondEx}) is given a different probability distribution.
@@ -112,78 +112,7 @@ In this case some of the future positions will have a really low probability to 
 So that simulating a great number of trajectories will lead to get some of them "choosing" also the less probable directions.
 For sure the most probable choice is to go Right, the second is to go Down and the third in order of probability is to go Right-Down.
 All the other directions follows as less probable, but with a non-zero probability.
-
-
-
-
-\begin{figure}[ht]
-\begin{minipage}[c]{0.33\linewidth}
-\centering
-\resizebox{0.7\textwidth}{!}{%
-\begin{tikzpicture}
-% Lines
-\draw[step=2cm, gray, very thin] (0,0) grid (6,6);
-% Nodes
-\draw (3,3) node[black] {$p_0 = 0$};
-\draw (5,3) node[black] {$p_1 = 1$};
-\draw (3,5) node[black] {$p_2 = 0$};
-\draw (1,3) node[black] {$p_3 = 0$};
-\draw (3,1) node[black] {$p_4 = 0$};
-\draw (5,5) node[black] {$p_5 = 0$};
-\draw (1,5) node[black] {$p_6 = 0$};
-\draw (1,1) node[black] {$p_7 = 0$};
-\draw (5,1) node[black] {$p_8 = 0$};
-\end{tikzpicture}
-}%
-\captionsetup{width=.8\linewidth}
-\caption{First example of probability distribution for a certain position. Always right.}
-\label{fig:D2Q9_FirstEx}
-\end{minipage}
-\begin{minipage}[c]{0.33\linewidth}
-\centering
-\resizebox{0.7\textwidth}{!}{%
-\begin{tikzpicture}
-% Lines
-\draw[step=2cm, gray, very thin] (0,0) grid (6,6);
-% Nodes
-\draw (3,3) node[black] {$p_0 = 0$};
-\draw (5,3) node[black] {$p_1 = 0.5$};
-\draw (3,5) node[black] {$p_2 = 0$};
-\draw (1,3) node[black] {$p_3 = 0$};
-\draw (3,1) node[black] {$p_4 = 0.5$};
-\draw (5,5) node[black] {$p_5 = 0$};
-\draw (1,5) node[black] {$p_6 = 0$};
-\draw (1,1) node[black] {$p_7 = 0$};
-\draw (5,1) node[black] {$p_8 = 0$};
-\end{tikzpicture}
-}%
-\captionsetup{width=.8\linewidth}
-\caption{Second example of probability distribution for a certain position. Always right or down.}
-\label{fig:D2Q9_SecondEx}
-\end{minipage}
-\begin{minipage}[c]{0.33\linewidth}
-\centering
-\resizebox{0.7\textwidth}{!}{%
-\begin{tikzpicture}
-% Lines
-\draw[step=2cm, gray, very thin] (0,0) grid (6,6);
-% Nodes
-\draw (3,3) node[black] {$p_0 = 0.01$};
-\draw (5,3) node[black] {$p_1 = 0.40$};
-\draw (3,5) node[black] {$p_2 = 0.01$};
-\draw (1,3) node[black] {$p_3 = 0.10$};
-\draw (3,1) node[black] {$p_4 = 0.20$};
-\draw (5,5) node[black] {$p_5 = 0.05$};
-\draw (1,5) node[black] {$p_6 = 0.02$};
-\draw (1,1) node[black] {$p_7 = 0.05$};
-\draw (5,1) node[black] {$p_8 = 0.16$};
-\end{tikzpicture}
-}%
-\captionsetup{width=.8\linewidth}
-\caption{Third example of probability distribution for a certain position. None zero probability.}
-\label{fig:D2Q9_thirdEx}
-\end{minipage}
-\end{figure}
+	\import{draw/}{D2Q9_example_distribution}
 
 
 
