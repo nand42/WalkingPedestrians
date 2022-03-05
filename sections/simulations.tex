@@ -29,7 +29,7 @@ With this tool is possible to plot the map with the corresponding probability fo
 It is possible to see along the trajectories where is the more probable direction to take and which is the less.
 To describe this lets take into account just a few real trajectories, with a common path and and opposite directions.
 To do so, here are considered five pedestrians in (Figure \ref{fig:5pids_trjl}), with two representations:
-one is plotting the actual lines in the field (Figure \ref{fig:5pids_trjlines}) and the other is a heat-map that describes where pedestrians passed through (Figure \ref{fig:5pids_trjlhist}).
+one is plotting the actual lines in the field (Figure \ref{fig:5pids_trjlines}) and the other is a heat-map that describes where pedestrians passed through (Figure \ref{fig:5pids_trjlines}).
 
 
 \begin{figure}[ht]
@@ -152,13 +152,12 @@ If a \emph{tensor} of the probability was created before it is possible to calcu
 Could be also very interesting to change the question to: how likely is this $\gamma$ that i'm watching?
 The answer to the last question may be satisfied by multiplying the value of each transition from the starting point to the end.
 
-\paragraph{Simple example}
-The aim of this paragraph is to give a simplistic example.
-Assume a finite grid of cell, a $6\times3$ matrix, where $x$ is horizontal and $y$ is vertical.
+\paragraph{Simplistic example}
+Assume a finite grid of cells, a $6\times3$ matrix, where $x$ is horizontal and $y$ is vertical.
 Assume that for each position $(x, y)$ is given a vector of \emph{nine} entries, that is exactly the $D2Q9$-model.
-Assume a finite number of possible move distributions: three for the first example.
-Lets represent the vector in the form of a matrix, referencing to the (Figure \ref{fig:D2Q9_k}).
-Lets call them $A, B, C, D$ with following structure:
+Assume a finite number of possible move distributions, (Equation \ref{equation:simplistic_example_transitions}).
+Lets represent the vector in the form of a matrix, referencing to the (Figure \ref{fig:D2Q9_k}), to help visualization.
+Lets call them: $A, B, C, D$, with the following values:
 \begin{equation}
 \begin{split}
 A=
@@ -208,44 +207,84 @@ Vector $B$ allows two possible directions but going Right is less probable than 
 Similarly to the previous, vector $C$ allows two possible directions but going Right is less probable than going Right-Up.
 The last vector $D$ imposes to stand still and for the scope of this example is useful to stop the steps.
 
+The discrete space $\Omega_g$ of this example is formed by 18 cells and it's represented in (Figure \ref{fig:simplistic_example_1}), in which one is set the probability distribution.
+Lets assume that the first position of a synthetic pedestrian starts from a cell in the first column from the left.
+Lets also assume that the scope of this simulation is two start from the left side of $\Omega_g$ and arrive to the right side.
+Not all trajectories are permitted, instead only a few are possible.
+All the possible path are showed in (Figure \ref{fig:simplistic_example_2}) with different colors.
+When the first position is the middle-left cell the simulation could only evolve in one path, the one represented in blue in the (Figure \ref{fig:simplistic_example_4}).
+Defining the path in the figure as $\gamma_0$ and it's probability as $p_{\gamma_0}$.
+This path as probability to happen equal to $p_{\gamma_0} = 1$ and no other path are allowed from this cell.
+Meanwhile from the upper-left cell three path are possible, as showed in (Figure \ref{fig:simplistic_example_5}), but not all with the same probability.
+Lets set a name for all the trajectories from this cell:
+\begin{itemize}
+\item $\gamma_0$ : blue path
+\item $\gamma_1$ : green path
+\item $\gamma_2$ : orange path
+\item $\gamma_3$ : red path
+\end{itemize}
+the notation for theirs probability is $p_{\gamma_i}$.
+Each probability can be derived from the series of products of the corresponding transitions values.
+So that in the previous case would be:
+\begin{equation*}
+p_{\gamma_0} = 1 \times 1 \times 1 \times 1 \times 1 = 1 = 100 \% \;.
+\end{equation*}
+In this second case would be instead:
+\begin{equation}
+\begin{split}
+p_{\gamma_1} & = 1 \times 1 \times 0.3 \times 0.3 \times 1 = 0.09 = 9 \% \\
+p_{\gamma_2} & = 1 \times 1 \times 0.3 \times 0.7 \times 1 = 0.21 = 21 \% \\
+p_{\gamma_3} & = 1 \times 1 \times 0.7 \times 1 \times 1    = 0.70 = 70 \%
+\end{split}
+\label{equation:simplistic_example_probabilities}
+\end{equation}
+The (Equation \ref{equation:simplistic_example_probabilities}) explicitly shows all the possibilities.
+With this is clear witch one is the more probable in this space.
+
 \begin{figure}[ht]
 \begin{minipage}[c]{0.5\linewidth}
 \centering
-
 \includegraphics[scale=0.1]{draw/Thesis_plots/Thesis_plots.001}
 \captionsetup{width=.8\linewidth}
 \caption{Space of the simplistic example. Every letter correspond to a specific distribution of possible transitions, referred to the (Equation \ref{equation:simplistic_example_transitions}).}
 \label{fig:simplistic_example_1}
-
 \end{minipage}
 \begin{minipage}[c]{0.5\linewidth}
 \centering
-
 \includegraphics[scale=0.1]{draw/Thesis_plots/Thesis_plots.002}
 \captionsetup{width=.8\linewidth}
-\caption{Space of the simplistic example. Every letter correspond to a specific distribution of possible transitions, referred to the (Equation \ref{equation:simplistic_example_transitions}).}
+\caption{All the possible paths that are permitted to travel from the left to the right side of the map $\Omega_g$. Different colors represents different probabilities.}
 \label{fig:simplistic_example_2}
-
 \end{minipage}
 \begin{minipage}[c]{0.5\linewidth}
 \centering
-
-\includegraphics[scale=0.1]{draw/Thesis_plots/Thesis_plots.005}
-\captionsetup{width=.8\linewidth}
-\caption{Space of the simplistic example. Every letter correspond to a specific distribution of possible transitions, referred to the (Equation \ref{equation:simplistic_example_transitions}).}
-\label{fig:simplistic_example_5}
-
-\end{minipage}
-\begin{minipage}[c]{0.5\linewidth}
-\centering
-
 \includegraphics[scale=0.1]{draw/Thesis_plots/Thesis_plots.004}
 \captionsetup{width=.8\linewidth}
-\caption{Space of the simplistic example. Every letter correspond to a specific distribution of possible transitions, referred to the (Equation \ref{equation:simplistic_example_transitions}).}
+\caption{A straight path. This path is forced to go straight right because of the distribution $A$ that permits only this movement.}
 \label{fig:simplistic_example_4}
-
+\end{minipage}
+\begin{minipage}[c]{0.5\linewidth}
+\centering
+\includegraphics[scale=0.1]{draw/Thesis_plots/Thesis_plots.005}
+\captionsetup{width=.8\linewidth}
+\caption{The three possible paths when starting from the upper-left cell. This situation is specular to when starting from the bottom-left cell.}
+\label{fig:simplistic_example_5}
 \end{minipage}
 \end{figure}
+
+\paragraph{Real-life situation}
+The previous example is an extreme simplification of a real case study.
+In fact it is easy enough to calculate by hand the possibles paths.
+First of all because the field $\Omega_g$ is larger and its dimensions depend only on two factor: the real spaces dimensions (in meters) and the choice of the grid size.
+The dataset showed before in (Figure \ref{fig:5pids_trjlines}) has an approx. grid space dimensions of $200 \times 100$ cells.
+The (Figure \ref{fig:5pids_D2Q9}) express the values of each direction in correlation to the map position.
+Also this scenario is simplified because it takes into account only five trajectories.
+In comparison the (Figure \ref{fig:TensorA_D2Q9}) shows how complex may became the representation when this transitions are calculated for a grater multitude of real pedestrian trajectories.
+
+To solve this problem it's essential the use of a computer calculation.
+
+
+
 
 
 
