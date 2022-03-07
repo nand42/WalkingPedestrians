@@ -153,11 +153,12 @@ Could be also very interesting to change the question to: how likely is this $\g
 The answer to the last question may be satisfied by multiplying the value of each transition from the starting point to the end.
 
 \paragraph{Simplistic example}
+Lets take into account the $D2Q9$-model, so that it's defined by a tensor $A_{x y k}$, in reference to the (Chap. \ref{chap:Model_D2Q9}).
 Assume a finite grid of cells, a $6\times3$ matrix, where $x$ is horizontal and $y$ is vertical.
-Assume that for each position $(x, y)$ is given a vector of \emph{nine} entries, that is exactly the $D2Q9$-model.
+Assume that for each position $(x, y)$ is given a vector of \emph{nine} entries with index $k$.
 Assume a finite number of possible move distributions, (Equation \ref{equation:simplistic_example_transitions}).
 Lets represent the vector in the form of a matrix, referencing to the (Figure \ref{fig:D2Q9_k}), to help visualization.
-Lets call them: $A, B, C, D$, with the following values:
+And call them: $A, B, C, D$, with the following values:
 \begin{equation}
 \begin{split}
 A=
@@ -227,9 +228,10 @@ the notation for theirs probability is $p_{\gamma_i}$.
 Each probability can be derived from the series of products of the corresponding transitions values.
 So that in the previous case would be:
 \begin{equation*}
-p_{\gamma_0} = 1 \times 1 \times 1 \times 1 \times 1 = 1 = 100 \% \;.
+p_{\gamma_0} = 1 \times 1 \times 1 \times 1 \times 1 = 1 = 100 \% \;
 \end{equation*}
-In this second case would be instead:
+and in fact $\gamma_0$ is the only one possible path.
+In the second case would be instead:
 \begin{equation}
 \begin{split}
 p_{\gamma_1} & = 1 \times 1 \times 0.3 \times 0.3 \times 1 = 0.09 = 9 \% \\
