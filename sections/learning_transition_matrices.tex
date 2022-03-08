@@ -49,6 +49,11 @@ The transition is identified by a number $k = 0,1,...,8$ such that is unique.
 It is derived from the series of coordinates for each trajectory and each step in time.
 When the calculation is made for each step, for every position in time is also associated a transition number, that represents where is going to go in the next step.
 If this transition is associated to the change in position it identify a certain velocity, as vector, with a certain direction.
+
+
+In reference to images from (Figure \ref{fig:Thesis_D2Q9andQ9.001})  to  (Figure \ref{fig:Thesis_D2Q9andQ9.015}), are shown some possible changes between cells.
+
+
 Iterating this procedure to the entire pedestrian's trajectory it is possible to get something like what's illustrated in the (Figure \ref{illustrate_eg_path}).
 In that figure it is possible to distinguish the path in the continuous space and the discrete path in the grid space.
 It also shows the direction of the next movement for each position with arrows that are consistent with the velocity arrows in each position.
@@ -56,6 +61,12 @@ The numbers are the value of the $k$-index in each position, it is solid with th
 This lead the discussion directly to the first model $D2Q9$ in the next paragraph.
 	\import{draw/}{illustrate_eg_path}
 
+	\import{draw/}{eg_grid_transitions}
+
+\paragraph{Tensor's dimension}
+Those tensors $A$ analyzed in the following paragraphs are conceptually similar to each other, but theirs dimensions are pretty different.
+Considering the same field with same dimensions it is easy to see that the order of magnitude of the entries' number rapidly increase changing the acquisition method.
+As example is set a field space of $200\times100$ cells and a time space of $200$ time-steps, to compare all the four model's tensors by theirs intrinsic dimensions.
 
 
 %% --- SECTION SEPARATOR---
@@ -97,9 +108,23 @@ It means that for each position in $\Omega$ it's possible to say how likely is t
 Then, once in the new position, it's again possible to say the most probable direction that the pedestrian will choose.
 The same prediction is applicable to the whole space, mapped by the real datas.
 	\import{draw/}{D2Q9_MarkovDiagram}
-With this structure it is then possible to create a tensor $A$ with three indices.
+\paragraph{Tensor's dimension}
+With this structure it is possible to create a tensor $A$ with three indices.
 Taking into account the simplest model, as above, the relative \emph{tensor} is $A_{x y k}$.
 Where every entries is the probability $p$ to move along the $k$ direction from the location $(x, y)$.
+The total number of elements in $A$ is the product between: 
+\begin{equation*}
+\begin{split}
+N(A_{xyk}) &= \mbox{(dim-x-grid)} \times \mbox{(dim-y-grid)} \times \mbox{(dim-k-array)} \\
+& = \mbox{(dim-x-grid)} \times \mbox{(dim-y-grid)} \times 9
+\end{split}
+\end{equation*}
+e.g. in the following paragraphs is used a grid space of $200\times100$ cells, so the number of entries would became 
+\begin{equation*}
+\begin{split}
+N(A_{xyk})=200\times100\times9 = 180000 \; .
+\end{split}
+\end{equation*}
 Since the aim of every models is to simulate a pedestrian in the crowd, this tensor is the key to get to the result.
 In general it's not easy to represent the tensor $A$ in all following models, but it's possible for this first one as plotted in (Figure \ref{fig:TensorA_D2Q9}).
 It shows a $3\times3$ matrix of figures.
@@ -157,8 +182,23 @@ Time step & $x_g$ & $y_g$ & $k$-index & $h$-index  \\ \hline
 Here is expressed the position time to time, the index of the following move and the index of the previous move.}
 \label{table:diagram_MC_D2Q9}
 \end{table}
+
+\paragraph{Tensor's dimension}
 The \emph{tensor} associated to this model is characterized by a total of four indexes as $A_{x y k h}$.
-Every element of this tensor is now representing a certain probability to move away from a state to another.
+Every element of this tensor is now representing a certain probability to move away from a state to another, but considering also the previous position.
+The total number of elements in $A$ is the product between:
+\begin{equation*}
+\begin{split}
+N(A_{xykh}) &= \mbox{(dim-x-grid)} \times \mbox{(dim-y-grid)} \times \mbox{(dim-k-array)} \times \mbox{(dim-h-array)} \\
+& = \mbox{(dim-x-grid)} \times \mbox{(dim-y-grid)} \times 81
+\end{split}
+\end{equation*}
+e.g. in the following paragraphs is used a grid space of $200\times100$ cells, so the number of entries would became 
+\begin{equation*}
+\begin{split}
+N(A_{xykh})=200\times100\times 81 = 1620000 \; .
+\end{split}
+\end{equation*}
 Taking into account the example in the (Table \ref{table:diagram_MC_D2Q9}), and considering this the only one possible trajectory.
 It is easy to see that the probability at $A_{x y k h} = A_{3, 3, 5, 4} = 1$ is maximum in the position $(3, 3)$.
 The probability for every other $k, h$ in the same position is zero, $A_{3, 3, k, h} = 0 \quad for \, k \neq 5, \, h \neq 4$.
@@ -213,8 +253,23 @@ So time is relative to each trajectories and not global.
 
 The definition of a \emph{state} is not just by the position in space but is given by $x, y, t$.
 In this model, pedestrians moves along three axes: two dimensions in space and one in time.
+
+\paragraph{Tensor's dimension}
 The \emph{tensor} representing the probability to move is defined by $A_{t x y k}$.
 With this structure it is possible to associate the velocity to the time step.
+The total number of elements in $A$ is the product between:
+\begin{equation*}
+\begin{split}
+N(A_{t xyk}) &= \mbox{(dim-time-grid)} \times \mbox{(dim-x-grid)} \times \mbox{(dim-y-grid)} \times \mbox{(dim-k-array)} \\
+& = \mbox{(dim-time-grid)} \times \mbox{(dim-x-grid)} \times \mbox{(dim-y-grid)} \times 9
+\end{split}
+\end{equation*}
+e.g. in the following paragraphs is used a grid space of $200\times100$ cells and the mean dimension in time for significants trajectories is dim-time $ = 200$, so the number of entries would became 
+\begin{equation*}
+\begin{split}
+N(A_{t xyk})=200 \times 200\times100\times 9 = 36000000 \; .
+\end{split}
+\end{equation*}
 This gives the possibility to differentiate when a trajectory is going to exit or is just entered, when giving the probability to move.
 Lets make an example and consider a position close to the map border $P_b = (x_b, y_b)$, something like in (Figure \ref{fig:boundary_position}).
 If it's not known the time of this position $P_b$ the probabilities to go to the center of the map or out of it are non zero.
@@ -239,13 +294,31 @@ When time is \emph{big}, the trajectory is at the ending, yellow positions are l
 \FloatBarrier
 \subsection{Model TD2Q9Q9}
 This model is the extension of the previous \emph{TD2Q9} and the \emph{D2Q9Q9} method, where time and acceleration are taken into account.
-With this method it is associated a tensor $A_{t x y k h}$, with five dimension.
+
+\paragraph{Tensor's dimension}
+With this method it is associated a tensor $A_{t x y k h}$, with five dimensions.
 With evident notation, in reference to the previous paragraphs, it's dependent on the time $t$, the position $(x, y)$, the future position $k$ and the previous position $h$.
+With the $TD2Q9Q9$-model is taken into account the information on acceleration in a position combined to the time of corresponding to that position.
+The total number of elements in $A$ is the product between:
+\begin{equation*}
+\begin{split}
+N(A_{t xykh}) &= \mbox{(dim-time-grid)} \times \mbox{(dim-x-grid)} \times \mbox{(dim-y-grid)} \times \mbox{(dim-k-array)} \times \mbox{(dim-h-array)} \\
+& = \mbox{(dim-time-grid)} \times \mbox{(dim-x-grid)} \times \mbox{(dim-y-grid)} \times 81
+\end{split}
+\end{equation*}
+e.g. in the following paragraphs is used a grid space of $200\times100$ cells and the mean dimension in time for significants trajectories is dim-time $ = 200$, so the number of entries would became 
+\begin{equation*}
+\begin{split}
+N(A_{t xyk})=200 \times 200\times100\times 81 = 324000000 \; .
+\end{split}
+\end{equation*}
 
 \paragraph{Time}
 As before, time is the proper time of each pedestrian.
 It define the time of a certain step along the whole trajectory.
-With the $TD2Q9Q9$-model is taken into account the information on acceleration in a position combined to the time of corresponding to that position.
+
+This very last model studied in this work is the most complex but may lead to a more appropriate simulation.
+It's also the most computationally expensive because of the great number of items and because it needs a big number of trajectories to \emph{fill} it all.
 
 
 
