@@ -50,9 +50,11 @@ It is derived from the series of coordinates for each trajectory and each step i
 When the calculation is made for each step, for every position in time is also associated a transition number, that represents where is going to go in the next step.
 If this transition is associated to the change in position it identify a certain velocity, as vector, with a certain direction.
 
-
 In reference to images from (Figure \ref{fig:Thesis_D2Q9andQ9.001})  to  (Figure \ref{fig:Thesis_D2Q9andQ9.015}), are shown some possible changes between cells.
-
+Those movements may start going $Up$ and evolve in very different ways.
+The First and the Second examples start with the same first transition but diverge with the second movement, this leads to two ending positions.
+But anyway those transitions have something in common even if they end up in different positions.
+This type of information is contained in the \emph{D2Q9Q9} types model and not in the \emph{D2Q9} types.
 
 Iterating this procedure to the entire pedestrian's trajectory it is possible to get something like what's illustrated in the (Figure \ref{illustrate_eg_path}).
 In that figure it is possible to distinguish the path in the continuous space and the discrete path in the grid space.
