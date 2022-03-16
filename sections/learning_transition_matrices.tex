@@ -65,10 +65,10 @@ This lead the discussion directly to the first model $D2Q9$ in the next paragrap
 
 	\import{draw/}{eg_grid_transitions}
 
-\paragraph{Tensor's dimension}
-Those tensors $A$ analyzed in the following paragraphs are conceptually similar to each other, but theirs dimensions are pretty different.
-Considering the same field with same dimensions it is easy to see that the order of magnitude of the entries' number rapidly increase changing the acquisition method.
-As example is set a field space of $200\times100$ cells and a time space of $200$ time-steps, to compare all the four model's tensors by theirs intrinsic dimensions.
+\paragraph{Model's order of magnitude}
+The transitions tensors $A$ generate from each model are conceptually similar to each other, but theirs dimensions are pretty different.
+Considering the same field $\Omega$ with same dimensions, it is easy to see that the order of magnitude of the entries' number rapidly increase changing the acquisition method.
+As example, in the following paragraphs, it is given a similar field space of $200\times100$ cells and a time space of $200$ time-steps, to compare all the four model's tensors by theirs intrinsic dimensions.
 
 
 %% --- SECTION SEPARATOR---
@@ -105,7 +105,7 @@ The same concept is graphically represented with the diagram in (Figure \ref{dia
 To every transition is associated a certain probability to happen.
 Formally this probability is given by the initial and the final states: $p_{if}$.
 Since there always is the same starting state, it is possible to omit it.
-So that the probability of the transition from $P_0$ to $P_k$ is expressed by $p_k$, where the index $k$ points to the ending state.
+So that the probability of the transition from $P_0$ to $P_k$ is expressed by $p_k(x,y)$, where the index $k$ points to the ending state.
 It means that for each position in $\Omega$ it's possible to say how likely is to "step forward" or "turn right" and so on.
 Then, once in the new position, it's again possible to say the most probable direction that the pedestrian will choose.
 The same prediction is applicable to the whole space, mapped by the real datas.
@@ -217,6 +217,7 @@ The numbers in blue are the values of the $h$-index for every step.}
 \end{figure}
 
 \paragraph{Cross trajectories}
+As a matter o
 A common situation when looking at the trajectories is to find intersections with two different initial directions.
 Taking into account the previous example, where two pedestrians cross the field very differently.
 One from the left-down to the right-up corners and the other from the right-down to the left-up corners.
