@@ -35,6 +35,7 @@
     colorlinks=true, %set true if you want colored links
     linktoc=all,     %set to all if you want both sections and subsections linked
     linkcolor=black,  %choose some color if you want links to stand out
+    citecolor=black
 }
 
 \makeindex
@@ -103,12 +104,12 @@
 \chapter{Introduction}
 
 \FloatBarrier
-\section{Assimilating pedestrian dynamics}
-	\import{sections/}{introduction}
+\section{Pedestrian dynamics background}
+	\import{sections/}{previous_works}
 
 \FloatBarrier
-\section{Pedestrian dynamics background}
-	\import{sections/previous_works}
+\section{Assimilating pedestrian dynamics}
+	\import{sections/}{introduction}
 
 \FloatBarrier
 \section{Recording technique of measure}
@@ -132,12 +133,12 @@
 	\import{sections/}{learning_transition_matrices}
 
 \FloatBarrier
-\section{Simulations}
+\section{Simulated dynamics}
 	\import{sections/}{simulations}
 
 \FloatBarrier
-\section{Approximation of path integrals: 3D histogram}
-	\import{sections/}{path_integrals_3d_histogram}
+% \section{Approximation of path integrals: 3D histogram}
+% 	\import{sections/}{path_integrals_3d_histogram}
 
 
 % --- --- --- CHAPTERS  SEPARATOR --- --- ---
@@ -145,11 +146,12 @@
 \chapter{Results}
 
 \FloatBarrier
-\section{Comparison of assimilation methods}
-	\import{sections/}{results_comparison}
+\section{Comparison of 3D histograms}
+%	\import{sections/}{results_comparison}
+	\import{sections/}{path_integrals_3d_histogram}
 
 \FloatBarrier
-\section{Simulation with generative models}
+\section{Simulated dynamics with probability models}
 	\import{sections/}{results_simulation}
 
 
@@ -163,11 +165,16 @@
 
 % --- --- --- CHAPTERS  SEPARATOR --- --- ---
 
-\chapter{Appendix}
+% \chapter{Appendix}
 
 \FloatBarrier
-\section{Package pathintegralanalytics - code description}
-	\import{sections/}{package_pathIntegralAnalytics}
+% \section{Package pathintegralanalytics - code description}
+% 	\import{sections/}{package_pathIntegralAnalytics}
+
+% --- --- --- CHAPTERS  SEPARATOR --- --- ---
+
+\import{sections/}{bibliography}
+
 
 
 \end{document}
