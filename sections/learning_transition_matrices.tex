@@ -31,12 +31,14 @@ Every model generate one trajectory that simulate just one pedestrian in a stati
 When simulating more paths it consider pedestrian that walks alone in the crowd.
 This model doesn't consider the interaction made by the others simulated pedestrians.
 
-\paragraph{Notation} Lets assume $\gamma=\gamma( \vec x_c)$ a pedestrian's path, where $\vec x_c = (x_c, y_c)$ has a bi-dimensional spacial dependancy.
-Given a field $\Omega_c$, the continuous space where pedestrians are tracked, the path $\gamma$ in that space has a start position $A$ and an end position $B$.
+\paragraph{Notation}
+Given a field $\Omega_c$, the continuous space where pedestrians are tracked
+Lets assume $\gamma=\gamma( \vec x_c, t)$ a pedestrian's path, where $\vec x_c = (x_c, y_c)$ has a bi-dimensional spacial dependancy.
+The path $\gamma$ in that space has a start position $A$ and an end position $B$.
 The field $\Omega$ is than divided into \emph{rectangular} cells, dividing the real space along $x$, whit maximum extension indicated as $L_x$, in a certain number of cells $D_x$; 
 as well for the $y$-direction, with obvious notation: $L_y$ and $D_y$.
 After this discretization is obtained a \emph{grid space} $\Omega_g$.
-Where every path $\gamma$ is converted from continuous $\gamma=\gamma(x_c, y_c)$ to discrete coordinate $\gamma=\gamma(x_g, y_g)$, referred to the \emph{grid}.
+Where every path $\gamma$ is converted from continuous $\gamma=\gamma(x_c, y_c, t)$ to discrete coordinate $\gamma=\gamma(x_g, y_g, t)$, referred to the \emph{grid}.
 To lighten up the notation when speaking of \emph{grid space} it is simply used $(x, y)$ in reference to the discrete grid position.
 
 \paragraph{The standard D2Q9 configuration} 
