@@ -17,24 +17,23 @@
 
 % Document
 \begin{document}
-The aim of this work is to clarify the possibility to analyze real life datas and to generate simulated dynamics of the pedestrian crowd.
-To do so it's necessary to be able to collect datas from a real world situation with enough precision and high acquisition ratio.
-Once datas are collected properly is then possible to \emph{learn} from it.
-The dynamics of a pedestrian is a complex motion in which multiple conditions and forces play a role.
-The motion of a single pedestrian in a crowd is a similarly complex problem.
-Despite everywhere in the world it is possible to find and watch walking pedestrian, it is however not as simple to acquire data about their motion.
-So the first problematic issue is the data acquisition.
-A possible solution to this is the video recording at a given spot.
-However this choice lead to others problems such us privacy violation and the object tracking from the video.
-The Xovis sensor was used to collect the data showed in this work, this type of sensor is capable to solve both the problems above.
-During the lasts decades the development of machine learning and imaging recognition has provided more tools to analyze this type of data.
-This technological advancement have enabled real-life high-accuracy measurements of pedestrian trajectory directly in loco.
-The data are acquired through the usage of overhead depth-sensing cameras.
-This approach allows a large scale anonymous acquisition of pedestrian trajectories without compromising quality or privacy.
-In this research a statistical approach is used to assimilate the average paths of pedestrians trajectories.
-Based on this, four models are being studied to evaluate which one is better predicting the most probable path.
-Due to the statistical approach this potential is also a probabilistic model, that make, or not, possible a good prediction based on probabilities.
-The \emph{probability} derivates from the real-data observation.
+The aim of this work is to clarify the possibility to analyze real life data and to generate simulated dynamics of the pedestrian crowd. 
+To do so, it is necessary to collect data with significant precision and high acquisition ration from a real-world situation. 
+Then, once the data are collected properly, it is possible to \emph{learn} from it. 
+The dynamics of a pedestrian is a complex motion, in which multiple conditions and forces play a role. 
+The motion of a single pedestrian in a crowd is a similarly complex problem. 
+Despite everywhere in the world, it is possible to find and watch walking pedestrian, it is not as simple to acquire data about their motion as it may seem. 
+Therefore, the first issue is the data acquisition. 
+One of the possible solutions to this problem it could be video recording at a given spot. 
+However, this choice leads to more problems, such us privacy violation and object tracking from the video. 
+The Xovis sensor \cite{Xovis} was used to collect the data showed in this work. 
+This type of sensor is capable to solve both problems above. During the last decades, the development of machine learning and imaging recognition has provided more tools to analyze this type of data. 
+This technological advancement has enabled real-life high-accuracy measurements of pedestrian trajectory directly in loco. 
+The data are acquired through the usage of overhead depth-sensing cameras. 
+This approach allows a large-scale anonymous acquisition of pedestrian trajectories without compromising quality or privacy. 
+In this research a statistical approach is used to assimilate the average paths of pedestrians’ trajectories. 
+Based on this, four models are being studied to evaluate which one is capable of better predicting the most probable path. 
+Due to the statistical approach, this is also a probabilistic model that could make or could not make possible to achieve a good prediction based on \emph{probabilities}, which are derived by the real-data observation.
 
 
 \subsection{Cellular Automata Model}
@@ -56,24 +55,27 @@ Data-in-the-model are similar to the aforementioned methods, but have one key di
 
 
 \section{Challenges}
+This section's scope is to explicitate the research question in a very simple and synthetic way.
 
-\paragraph{Starting from real data how can we define a good model to simulate a pedestrian in the crowd flow?}
-In this type of system there is a multitude of \emph{forces} that determinate the path of a single pedestrian.
-So let's take into account a single pedestrian $P$ that walks in a certain space.
-The first type of interaction is the structure where $P$ can or cannot walk thought, that is defined as the whole domain $\Omega$.
-The second interaction is between $P$ and the other pedestrians.
-Every pedestrian needs a personal space all around, that is variable due the circumstance and it is not easy to be analytically determinate.
-A third type of interaction are random events along the $P$'s path, real world events.
-...
-
-\paragraph{How to visualise the pedestrian's path using a multi-dimensional histogram?}
-It is possible to plot every single trajectory, but this lead to a chaotic data representation and not so functional nor readable.
-It is also easily possible to plot the \emph{heatmap} of a dataset to analyse the most "walked" areas.
-Even if this second plot choice can takes into account more trajectories than the first and still be readable, it has a problem.
-This second lead to a representation where the time dependency is completely lost.
-...
+\paragraph{Which is a \emph{good} data-driven mathematical model that better represents the original data?}
+In this type of system there is a multitude of factors that determinate the path of a single pedestrian. 
+Thus, let’s consider a single pedestrian P who walks in a certain space. 
+The first type of interaction it is the structure where P can or cannot walk through; this structure is defined as the whole domain $\Omega$. 
+The second interaction is between P and the other pedestrians. 
+Every pedestrian needs a personal space all around; due to the circumstance, there is a variable, and it is not easy to analytically determinate it.
+The third interaction corresponds to random events along the P ’s path; for random events we mean real world events.
+But this is not the end of the list.
+This work scopes is to learn from real datas without necessarily define and separate those factors above; but define a mathematical framework (MF).
+The MF has to be able to determinate if a given trajectory is a common one or not. 
+In other words, the MF collect the information about the more probable paths based on what it was used to generate it.
+This is called a \emph{data-driven} model.
 
 
+\paragraph{Which is a good representation for a chaotic combination of trajectories?}
+It is possible to plot every single trajectory, but this leads to a chaotic data representation, which then results to be not functional nor readable. 
+It is also possible to plot easily the heatmap of a dataset to analyze the most “walked” areas. 
+Although this second plot choice can consider more trajectories than the first one and still be readable, it has a problem: it leads to a representation where the time dependency is completely lost.
+To be able to represent datas that have statistical relevance, it is introduced a 3 dimensional plot that that shows positions in time with the same number of occurrence.
 
 
 

@@ -19,18 +19,38 @@
 
 % Document
 \begin{document}
-\subsection{Markov Chain}\label{chap:MarkovChain}
+This section's scope is to introduce some nomenclature and theoretic information for the following chapters.
+
+\subsection{Markov Chain} % \label{chap:MarkovChain}
 	\import{sections/}{markov_chain}
 	
+
+% ---
+\FloatBarrier
+\subsection{The model's name and scheme}
+The aim of this section is to give the notation used about the models and the mathematical tools.
+
+\paragraph{Model's name}
+The D2Q9 is the abbreviation for the "two dimensional space" (D2) and considering the "nine next near cells" (Q9).
+The name used here of the first considered model is "\emph{D2Q9-model}" and it's also the simplest.
+The second use the same components of the previous but including also the "nine previous near cells" so that a second (Q9) is added to the end; its name is "\emph{D2Q9Q9-model}".
+The third model is again similar to the very first one and it also considers "time" (T); its reference name is than "\emph{TD2Q9-model}".
+The fourth model, and last in this work, is named as "\emph{TD2Q9Q9-model}", so that this model is developed in a "two dimensional space" considering the "nine next near cells" and the "nine previous near cells".
+
+
+\paragraph{The developed mathematical framework}
+The mathematical framework utilized in this work is primarily composed by a tensor of probabilities; that immediately follows from the MC theory.
+The reference name to this tensor in the following pages is $A$, where are added indexes, as subscripts.
+
+For the simplest model used here, the \emph{D2Q9-model}, it's a three dimensional tensor named $A_{x y k}$.
+For the second, the \emph{D2Q9Q9-model}, it's a four dimensional tensor named $A_{x y k h}$.
+For the third, the \emph{TD2Q9-model}, it's a four dimensional tensor named $A_{t x y k}$.
+For the fourth, the \emph{TD2Q9Q9-model}, it's a five dimensional tensor named $A_{t x y k h}$.
+
 % ---
 % \FloatBarrier
 % \subsection{Cellular-Automata}
 % 	\import{sections/}{cellular_automata}
-
-% ---
-\FloatBarrier
-\subsection{The D2Q9 scheme}
-
 
 % ---
 % \subsection{Lattice-Boltzman}

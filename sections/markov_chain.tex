@@ -19,14 +19,21 @@
 
 % Document
 \begin{document}\label{chap:MarkovChain}
-A \emph{Markov Chain} is a stochastic model.
-It predicts the future outcoming state based on the present state.
-In other words, the present state determinates the probabilities for every possible future outcomes.
-The MC may be represented as a diagram, (Figure \ref{fig:diagramMC}), where the arrows are the possible transitions.
-A number $p \in (0,1)$ may also be indicated on the arrows, it specify the probability of that transition.
-Another model's representation is a \emph{stochastic matrix}, from now on called $P$ matrix.
-The matrix's entries $P_{ij}$ have as row-index $i$ the starting state and as column-index $j$ the ending state of the system.
-So that every entries are referred to a specific transition.
+
+A \emph{Markov Chain} (MC) is a stochastic model. 
+It predicts the future outcoming state based on the present one. 
+In other words, the present state determinates the probabilities for every possible future outcome. 
+The MC may be represented as a diagram (Figure \ref{fig:diagramMC}) \cite{MC_Gagniuc} in which the arrows are the possible transitions. 
+A number $p \in (0,1)$ may also be indicated on the arrows to specifies the probability of that transition. 
+Another model’s representation is a \emph{stochastic matrix}, also called $P$ matrix. 
+The matrix entries $P_{ij}$ have as row-index i the starting state and as column-index j the ending state of the system. 
+Hence, all the entries are referred to a specific transition. 
+A two-state Markov Chain is the most basic model, which can be used for the illustration of the Markov process. 
+The diagram in (Figure \ref{fig:MarkovMatrix}) represents the possibility that the system must change from both states. 
+For instance, from the state $W$ the system can move to the state $B$ with the big black arrow or can remain in the state $W$ with the small white arrow.
+The entries in the Markov Matrix in (Figure \ref{fig:matrixMC}) are positives numbers from $0$ to $1$; they represent the probability of changing state. 
+The sum on the outgoing arrows must be equal to $1$.
+
 \begin{figure}[h]
     \centering
     \subfloat[The diagram of a two-state Markov Chain]{
@@ -37,17 +44,9 @@ So that every entries are referred to a specific transition.
     \label{fig:matrixMC}
         \includegraphics[ width=0.4\textwidth]{./estratti/Markov Chain matrix two state}
     }
-    \caption{From the Markov diagram to the Markov matrix of a tow-state system}
+    \caption{From the Markov diagram to the Markov matrix of a tow-state system.}
     \label{fig:MarkovMatrix}
 \end{figure}
-A two-state Markov chain is the most basic model which can be used for the illustration of the Markov process.
-The diagram in (Figure \ref{fig:MarkovMatrix}) represents the possibility that the system has to change from both states.
-For instance, from the state $W$ the system can move to the state $B$ with the big black arrow or can remain in the state $W$ with the small white arrow.
-The entries in the Markov Matrix in (Figure \ref{matrixMC}) are positives numbers from $0$ to $1$ that represent the probability of changing state.
-The sum on the outgoing arrows must be equal to $1$.
-
-
-
 
 
 
