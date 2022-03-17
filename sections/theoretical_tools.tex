@@ -1,0 +1,40 @@
+%%
+%% Author: Dario Chinelli
+%% begin 2019-12-04
+%% last mod 2022-02-02
+%%
+
+% Preamble
+\documentclass[class=article, crop=false]{standalone}
+
+% Packages
+\usepackage[subpreambles=true]{standalone}
+\usepackage{import}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{subfig}
+
+%	References:
+%	> Markov chains  from theory to implementation and experimentation by Gagniuc, Paul A
+
+% Document
+\begin{document}
+\subsection{Markov Chain}\label{chap:MarkovChain}
+	\import{sections/}{markov_chain}
+	
+% ---
+% \FloatBarrier
+% \subsection{Cellular-Automata}
+% 	\import{sections/}{cellular_automata}
+
+% ---
+\FloatBarrier
+\subsection{The D2Q9 scheme}
+
+
+% ---
+% \subsection{Lattice-Boltzman}
+%	\import{sections/}{lattice_boltzman}
+
+
+\end{document}
