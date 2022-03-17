@@ -37,6 +37,22 @@ Due to the statistical approach this potential is also a probabilistic model, th
 The \emph{probability} derivates from the real-data observation.
 
 
+\subsection{Cellular Automata Model}
+Cellular automata (CA) belong to the family of discretised modelling approaches. The model consists of a discrete spacetime lattice, along with computational capabilities that govern the evolution of the model through space and time. CA approaches often feature a finite amount of physical states per lattice site, but this is not a requirement. CA models are characterised by two main features: locality, ensuring that interactions can only take place between a given set of neighbouring cells, and modularity, which requires every lattice cell to be an independent process. The latter renders CA approaches very suitable for parallelised computing.
+
+In the context of pedestrian dynamics, CA models discretise the pedestrian domain into a grid of cells, where every cell hols information and the presence and walking direction of pedestrians. Cells can also be flagged to be not accessible, to model boundary conditions in the form of objects and obstacles. The model should also have a set of transition rules, governing pedestrian movements between different cells. Such rules are often defined by probabilities and stochastic choice models, hence the close connection with the stochastic modelling category.
+
+Cellular automata were first applied successfully in the context of pedestrian dynamics by Blue and Adler in 1998 \cite{microsimulation_1}, simulating one-dimensional pedestrian traffic, which was later extended to two- dimensional traffic flows \cite{microsimulation_2}. CA models have also been applied successfully in the context of evacuation problems \cite{evacuation_1,evacuation_2} and in junction with with other modelling categories.
+
+Much of the criticism towards CA-based approaches follows from the method’s discrete nature. Since the space-time lattices are often very symmetric, the lattices are considered to be too symmetric for realistic movements. Moreover, the finite number of states and rules per lattice cell cause non- natural homogeneous behaviour, as demonstrated by Bierlaire et al. \cite{criticism_1}. Approaches to overcome these limitations have been proposed by Lubas et al. \cite{criticism_2}, in which the authors created a non-homogeneous and asynchronous CA model with cell-dependent transition rules. Still, the CA model remains a popular platform for studying pedestrian dynamics following its computational simplicity.
+
+
+\subsection{Data-Driven Model}
+The data-driven category distinguishes itself by a strong dependence on real-life measured pedestrian behaviour. In the literature review, two different approaches are concerned, namely data-in-the-loop approaches and data-in-the-model approaches.
+In the data-in-the-loop models, real pedestrian data(consisting of group behaviour or individual trajectories) are assembled into a collection, which is then used to perform simulations. In Lerner et al. (2007), pedestrian trajectories are captured from video recordings, which are used to generate natural pedestrian behaviour in a virtual environment \cite{crowds}. In the work by Porzycki (2014), a pedestrian simulation is coupled with a measurement setup, asdetected pedestrians are initialized as embodied agents in the simulation \cite{data_driven}. In 2010, Ju et al. introduced a crowd generation approach, in which crowd formations and individual trajectories were taken from video recordings \cite{mor_crowds}. These measurements were then used to create virtual interpolated crowds of different densities. All data-in-the-loop approaches suffer from interpolation artefacts causing non-realistic behaviour, especially in the limit of high densities.
+
+Data-in-the-model are similar to the aforementioned methods, but have one key difference in their workings: the parameters of an existing simulation model are adjusted based on real pedestrian measurements. This category has much more works reported in the literature review, for all modelling categories considered, such as mechanical, cellular automata and stochastic models \cite{crowd_simulation,interactive_crowd_simulation,data_driven_simulation}. The most travails are encountered in the area of data extraction: it is time-consuming work to capture high-quality pedestrian measurements, moreover for large crowds.
+
 
 
 \section{Challenges}
