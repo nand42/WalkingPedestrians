@@ -54,13 +54,39 @@ The transition is identified by a number $k = 0,1,...,8$ such that is unique.
 It is derived from the series of coordinates for each trajectory and each step in time. 
 When the calculation is made for each step, a transition number is also associated for every position in time; this number represents where the position is going to go in the next step.
 If this transition is associated to the change in position, it identifies a certain velocity, such as a vector with a certain direction. 
-	\import{draw/}{illustrate_eg_path}
-
 Iterating this procedure to the entire pedestrian’s trajectory, it is possible to get something similar to what is illustrated in (Figure \ref{illustrate_eg_path}). 
 In that figure, it is possible to distinguish the path in the continuous space and the discrete path in the grid space. 
 It also shows the direction of the next movement for each position, using arrows that are consistent with the velocity arrows in each position. 
-The numbers are the value of the $k$-index in each position, and they are solid with the maps above. 
-This leads the discussion directly to the first model $D2Q9$ in the next paragraph.
+The numbers are the value of the $k$-index in each position, and they are consistent with the maps above. 
+	\import{draw/}{illustrate_eg_path}
+
+
+\paragraph{Probability distribution}
+The tool used in this work is a \emph{move probability} tensor.
+For each position, and eventually also time, it returns a number between $0$ and $1$ for each element.
+The sum over every directions must be $1$, because of the normalization.
+This tensor is multidimensional, as described in the previous paragraphs, and its dimension depends on the model.
+With this tool is possible to plot the map with the corresponding probability for each of the nine directions.
+It is possible to see along the trajectories where is the more probable direction to take and which is the less.
+To describe this lets take into account just a few real trajectories, with a common path and and opposite directions.
+To do so, here are considered five pedestrians in (Figure \ref{fig:5pids_trjl}), with two representations:
+one is plotting the actual lines in the field (Figure \ref{fig:5pids_trjlines}) and the other is a heat-map that describes where pedestrians passed through (Figure \ref{fig:5pids_trjlines}).
+\begin{figure}[ht]
+\begin{minipage}[c]{0.5\linewidth}
+\centering
+\includegraphics[scale=0.17]{fig/5pids/figure_trainf10_few_trajectories_Dx200_Dy100_TRJLINES}
+\captionsetup{width=.8\linewidth}
+\caption{Trajectories lines of five "real" pedestrians.}
+\label{fig:5pids_trjlines}
+\end{minipage}
+\begin{minipage}[c]{0.5\linewidth}
+\centering
+\includegraphics[scale=0.17]{fig/5pids/figure_trainf10_few_trajectories_Dx200_Dy100_TRJHIST}
+\captionsetup{width=.8\linewidth}
+\caption{Representation of five real trajectories from dataset.}
+\label{fig:5pids_trjl}
+\end{minipage}
+\end{figure}
 
 
 \paragraph{Model's order of magnitude}

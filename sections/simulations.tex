@@ -18,41 +18,7 @@
 
 % Simulations documentation here
 
-
 \FloatBarrier
-\paragraph{Probability distribution}
-The tool used in this work is a \emph{move probability} tensor.
-For each position, and eventually also time, it returns a number between $0$ and $1$ for each element.
-The sum over every directions must be $1$, because of the normalization.
-This tensor is multidimensional, as described in the previous paragraphs, and its dimension depends on the model.
-With this tool is possible to plot the map with the corresponding probability for each of the nine directions.
-It is possible to see along the trajectories where is the more probable direction to take and which is the less.
-To describe this lets take into account just a few real trajectories, with a common path and and opposite directions.
-To do so, here are considered five pedestrians in (Figure \ref{fig:5pids_trjl}), with two representations:
-one is plotting the actual lines in the field (Figure \ref{fig:5pids_trjlines}) and the other is a heat-map that describes where pedestrians passed through (Figure \ref{fig:5pids_trjlines}).
-
-
-\begin{figure}[ht]
-\begin{minipage}[c]{0.5\linewidth}
-\centering
-
-\includegraphics[scale=0.17]{fig/5pids/figure_trainf10_few_trajectories_Dx200_Dy100_TRJLINES}
-
-\captionsetup{width=.8\linewidth}
-\caption{Trajectories lines of five "real" pedestrians.}
-\label{fig:5pids_trjlines}
-\end{minipage}
-\begin{minipage}[c]{0.5\linewidth}
-\centering
-
-\includegraphics[scale=0.17]{fig/5pids/figure_trainf10_few_trajectories_Dx200_Dy100_TRJHIST}
-
-\captionsetup{width=.8\linewidth}
-\caption{Representation of five real trajectories from dataset.}
-\label{fig:5pids_trjl}
-\end{minipage}
-\end{figure}
-
 
 \paragraph{Velocities plot}
 A significant plot to understand those paths is the one that compare the velocity along the two axes $x$ and $y$.
