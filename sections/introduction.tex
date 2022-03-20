@@ -18,10 +18,10 @@
 % Document
 \begin{document}
 The aim of this work is to clarify the possibility to analyze real life data and to generate simulated dynamics of the pedestrian crowd. 
-To do so, it is necessary to collect data with significant precision and high acquisition ratio from a real-world situation. 
-Some works about the acquisition of data, from a very technical point of view, are deeply studied already \cite{alecorbe} so that it's not taken into account in the work of this thesis.
+To do so, it is necessary to collect data with significant precision and high acquisition ratio from a real-world environment. 
+Other works focused on the acquisition of data from a very technical point of view \cite{alecorbe}, so this object is not taken into account in the work of this thesis.
 Then, once the data are collected properly, it is possible to \emph{learn} from it. 
-The dynamics of a pedestrian is a complex motion, in which multiple conditions and forces play a role. 
+The dynamics of a pedestrian is complex, in which multiple conditions and forces play a role. 
 The motion of a single pedestrian in a crowd is a similarly complex problem. 
 Despite everywhere in the world, it is possible to find and watch walking pedestrian, it is not as simple to acquire data about their motion as it may seem. 
 Therefore, the first issue is the data acquisition. 
@@ -56,7 +56,7 @@ Data-in-the-model are similar to the aforementioned methods, but have one key di
 
 % --- --- --- --- --- --- --- --- --- --- --- 
 \section{Challenges}
-This section's scope is to explicitate the research question in a very simple and synthetic way.
+This section's scope is to explicitate the research question in a \verb"•"ry simple and synthetic way.
 
 \paragraph{Which is a \emph{good} data-driven mathematical framework that better represents the original data?}
 In this type of system there is a multitude of factors that determinate the path of a single pedestrian. 
@@ -72,6 +72,13 @@ In other words, the MF collect the information about the more probable paths bas
 This is called a \emph{data-driven} model.
 
 
+\paragraph{Which is a good representation for a random combination of trajectories?}
+It is possible to plot every single trajectory, but, increasing the number, this leads to an unreadable representation, which then results to be not functional. 
+It is also possible to plot easily the heatmap of a dataset to analyze the most “walked” areas. 
+Although this second plot choice can consider a great number of trajectories and still be readable, it has a problem: it leads to a representation where the time dependency is completely lost.
+To be able to represent datas that have statistical relevance, it is introduced a 3 dimensional plot that that shows positions in time with the same number of occurrence.
+
+
 \paragraph{How to built a proper software library?}
 A crucial part of this work is the writing of the software capable of doing all the necessary steps, from the raw data to the results and the simulated dynamics.
 The idea is to have a Python module that permits to work on the data from a raw structure to the results and the simulated dynamics.
@@ -80,12 +87,6 @@ The name of this library is \emph{"pathintegralanalytics"} (PIA).
 The PIA takes a raw CSV file, that contains the information about the position in time of the studied trajectories, and returns an object.
 On this object it's possible to work with the PIA module and analyze the trajectories, get the velocities and collect the information to generate the mathematical framework.
 
-
-\paragraph{Which is a good representation for a chaotic combination of trajectories?}
-It is possible to plot every single trajectory, but this leads to a chaotic data representation, which then results to be not functional nor readable. 
-It is also possible to plot easily the heatmap of a dataset to analyze the most “walked” areas. 
-Although this second plot choice can consider more trajectories than the first one and still be readable, it has a problem: it leads to a representation where the time dependency is completely lost.
-To be able to represent datas that have statistical relevance, it is introduced a 3 dimensional plot that that shows positions in time with the same number of occurrence.
 
 
 % \section{Relevance}

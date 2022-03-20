@@ -14,14 +14,14 @@
 % Document
 \begin{document}
 
-The dynamics of pedestrians change considerably depending on the surrounding space, not just for the intrinsic chaotic movements that people make while walking, but also due to the reciprocal collisions and environmental conditions. 
+The dynamics of pedestrians change considerably depending on the surrounding space, not just for the intrinsic random movements that people make while walking, but also due to the reciprocal collisions and environmental conditions. 
 We have considered a variety of scenarios in order to develop models and to create a tool that can give us simulations of the movements of a single pedestrian. 
 To properly simulate pedestrian dynamics, we needed information about the probability of changing direction after every step and in every position of the trajectory. 
 This approach is linked to the path in such a way that given a trajectory, it is possible to say with some probability where the next step will be. 
-This mathematical approach is computationally expensive, even more so considering the big amount of data we are using. 
-Therefore, we started by implementing a discretized system and an easy model; then we moved to more complex one. 
-Finally, we got four types of models in total: two were time dependent and two were time independent. 
-The scientific aim has been to create a mathematical framework, inspired by Lattice-Boltzmann and Cellular Automata, with which we could learn, starting from real data, the dynamics of pedestrians and quantify them in terms of lattice transition matrices. 
+This mathematical approach may be computationally expensive, even more so considering the big amount of data we are using. 
+Therefore, we started by implementing a discretized system and an easy model; then we moved to more complex ones. 
+Finally, we got four types of models: two were time-dependent and two were time-independent. 
+The scientific aim has been to create a mathematical framework, inspired by Lattice Boltzmann and Cellular Automata, with which we could learn, starting from real data, the dynamics of pedestrians and quantify them in terms of lattice transition matrices. 
 The fundamental purpose is to succeed in quantifying the probability field found by utilizing different models. 
 This field allows us to study the dynamics and to create simulations of pedestrians and trajectories whose statistics are indistinguishable from the real trajectories’ statistics.
 
