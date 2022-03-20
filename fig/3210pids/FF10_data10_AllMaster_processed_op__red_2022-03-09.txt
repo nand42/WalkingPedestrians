@@ -1,0 +1,16 @@
+CREATION DATE & TIME :  2022-03-09 19:05:08.516341
+
+info txt file of dataframe: 
+
+ >>  /Users/dcm/analisi2022tesi_master/datasets/FF10_data10_AllMaster_processed_op__red.csv
+
+Distance minima = 200
+Distance media = 213
+Distance max = 227
+Rstep_len minima = 150
+Rstep_len media = 176
+Rstep_len max = 249
+Numero di pid rimasti su iniziali = 3210 / 67651
+Keys del dataframe = Index(['Unnamed: 0', 'unixepoch', 'pid', 'x', 'y', 'Rstep_len', 'Rstep',
+       'x_SG', 'y_SG', 'vx_SG', 'vy_SG', 'distance'],
+      dtype='object')
