@@ -25,7 +25,6 @@
 \usetikzlibrary{positioning}
 \usepackage{enumitem}
 \usetikzlibrary{automata, arrows, positioning, calc}
-%\usepackage{tikz}
 %\usepackage{tikz-uml}
 \usepackage[section]{placeins}
 
@@ -88,14 +87,22 @@
 \end{titlepage}
 \restoregeometry
 
+
 % --- --- --- FIRST PAGE / ABSTRACT  SEPARATOR --- --- ---
 
-\begin{abstract}
+\chapter*{Abstract}
+%\begin{abstract}
 	\import{sections/}{abstract}
-\end{abstract}
+%\end{abstract}
 
 
-% --- --- --- ABSTRACT / CONTENTS  SEPARATOR --- --- ---
+% --- --- --- ABSTRACT / RINGRAZIAMENTI  SEPARATOR --- --- ---
+
+\chapter*{Acknowledgement}
+	\import{sections/}{acknowledgements}
+
+
+% --- --- --- RINGRAZIAMENTI / CONTENTS  SEPARATOR --- --- ---
 
 \tableofcontents
 
