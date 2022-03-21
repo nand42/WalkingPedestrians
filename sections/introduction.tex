@@ -17,75 +17,80 @@
 
 % Document
 \begin{document}
-The aim of this work is to clarify the possibility to analyze real life data and to generate simulated dynamics of the pedestrian crowd. 
-To do so, it is necessary to collect data with significant precision and high acquisition ratio from a real-world environment. 
+The aim of this work is to clarify the possibility to analyze real-life data and generate simulated dynamics of the pedestrian crowd. 
+To do so, it is necessary to collect data with significant precision and a high acquisition ratio from a real-world environment. 
 Other works focused on the acquisition of data from a very technical point of view \cite{alecorbe}, so this object is not taken into account in the work of this thesis.
 Then, once the data are collected properly, it is possible to \emph{learn} from it. 
-The dynamics of a pedestrian is complex, in which multiple conditions and forces play a role. 
+The dynamic of a pedestrian is complex, in which multiple conditions and forces play a role. 
 The motion of a single pedestrian in a crowd is a similarly complex problem. 
-Despite everywhere in the world, it is possible to find and watch walking pedestrian, it is not as simple to acquire data about their motion as it may seem. 
-Therefore, the first issue is the data acquisition. 
-One of the possible solutions to this problem it could be video recording at a given spot. 
-However, this choice leads to more problems, such us privacy violation and object tracking from the video. 
-The Xovis sensor \cite{Xovis} was used to collect the data showed in this work. 
+Despite everywhere in the world, it is possible to find and watch walking pedestrians, it is not as simple to acquire data about their motion as it may seem. 
+Therefore, the first issue is data acquisition. 
+One of the possible solutions to this problem could be video recording at a given spot. 
+However, this choice leads to more problems, such as privacy violations and object tracking from the video. 
+The Xovis sensor \cite{Xovis} was used to collect the data shown in this work. 
 This type of sensor is capable to solve both problems above. During the last decades, the development of machine learning and imaging recognition has provided more tools to analyze this type of data. 
 This technological advancement has enabled real-life high-accuracy measurements of pedestrian trajectory directly in loco. 
 The data are acquired through the usage of overhead depth-sensing cameras. 
 This approach allows a large-scale anonymous acquisition of pedestrian trajectories without compromising quality or privacy. 
-In this research a statistical approach is used to assimilate the average paths of pedestrians’ trajectories. 
+In this research, a statistical approach is used to assimilate the average paths of pedestrians’ trajectories. 
 Based on this, four models are being studied to evaluate which one is capable of better predicting the most probable path. 
-Due to the statistical approach, this is also a probabilistic model that could make or could not make possible to achieve a good prediction based on \emph{probabilities}, which are derived by the real-data observation.
+Due to the statistical approach, this is also a probabilistic model that could make or could not make it possible to achieve a good prediction based on \emph{probabilities}, which are derived by the real-data observation.
 
 
 \subsection{Cellular Automata Model}
-Cellular automata (CA) belong to the family of discretised modelling approaches. The model consists of a discrete spacetime lattice, along with computational capabilities that govern the evolution of the model through space and time. CA approaches often feature a finite amount of physical states per lattice site, but this is not a requirement. CA models are characterised by two main features: locality, ensuring that interactions can only take place between a given set of neighbouring cells, and modularity, which requires every lattice cell to be an independent process. The latter renders CA approaches very suitable for parallelised computing.
+Cellular automata (CA) belong to the family of discretized modeling approaches. The model consists of a discrete spacetime lattice, along with computational capabilities that govern the evolution of the model through space and time. CA approaches often feature a finite amount of physical states per lattice site, but this is not a requirement. CA models are characterized by two main features: locality, ensuring that interactions can only take place between a given set of neighboring cells, and modularity, which requires every lattice cell to be an independent process. The latter renders CA approaches very suitably for parallelized computing.
 
-In the context of pedestrian dynamics, CA models discretise the pedestrian domain into a grid of cells, where every cell hols information and the presence and walking direction of pedestrians. Cells can also be flagged to be not accessible, to model boundary conditions in the form of objects and obstacles. The model should also have a set of transition rules, governing pedestrian movements between different cells. Such rules are often defined by probabilities and stochastic choice models, hence the close connection with the stochastic modelling category.
+In the context of pedestrian dynamics, CA models discretize the pedestrian domain into a grid of cells, where every cell hols information and the presence and walking direction of pedestrians. Cells can also be flagged to be not accessible, to model boundary conditions in the form of objects and obstacles. The model should also have a set of transition rules, governing pedestrian movements between different cells. Such rules are often defined by probabilities and stochastic choice models, hence the close connection with the stochastic modeling category.
 
-Cellular automata were first applied successfully in the context of pedestrian dynamics by Blue and Adler in 1998 \cite{microsimulation_1}, simulating one-dimensional pedestrian traffic, which was later extended to two- dimensional traffic flows \cite{microsimulation_2}. CA models have also been applied successfully in the context of evacuation problems \cite{evacuation_1,evacuation_2} and in junction with with other modelling categories.
+Cellular automata were first applied successfully in the context of pedestrian dynamics by Blue and Adler in 1998 \cite{microsimulation_1}, simulating one-dimensional pedestrian traffic, which was later extended to two- dimensional traffic flows \cite{microsimulation_2}. CA models have also been applied successfully in the context of evacuation problems \cite{evacuation_1,evacuation_2} and injunction with other modeling categories.
 
 Much of the criticism towards CA-based approaches follows from the method’s discrete nature. Since the space-time lattices are often very symmetric, the lattices are considered to be too symmetric for realistic movements. Moreover, the finite number of states and rules per lattice cell cause non- natural homogeneous behaviour, as demonstrated by Bierlaire et al. \cite{criticism_1}. Approaches to overcome these limitations have been proposed by Lubas et al. \cite{criticism_2}, in which the authors created a non-homogeneous and asynchronous CA model with cell-dependent transition rules. Still, the CA model remains a popular platform for studying pedestrian dynamics following its computational simplicity.
 
 
 \subsection{Data-Driven Model}
 The data-driven category distinguishes itself by a strong dependence on real-life measured pedestrian behaviour. In the literature review, two different approaches are concerned, namely data-in-the-loop approaches and data-in-the-model approaches.
-In the data-in-the-loop models, real pedestrian data(consisting of group behaviour or individual trajectories) are assembled into a collection, which is then used to perform simulations. In Lerner et al. (2007), pedestrian trajectories are captured from video recordings, which are used to generate natural pedestrian behaviour in a virtual environment \cite{crowds}. In the work by Porzycki (2014), a pedestrian simulation is coupled with a measurement setup, asdetected pedestrians are initialized as embodied agents in the simulation \cite{data_driven}. In 2010, Ju et al. introduced a crowd generation approach, in which crowd formations and individual trajectories were taken from video recordings \cite{mor_crowds}. These measurements were then used to create virtual interpolated crowds of different densities. All data-in-the-loop approaches suffer from interpolation artefacts causing non-realistic behaviour, especially in the limit of high densities.
+In the data-in-the-loop models, real pedestrian data(consisting of group behaviour or individual trajectories) are assembled into a collection, which is then used to perform simulations. 
+In Lerner et al. (2007), pedestrian trajectories are captured from video recordings, which are used to generate natural pedestrian behaviour in a virtual environment \cite{crowds}. 
+In the work by Porzycki (2014), a pedestrian simulation is coupled with a measurement setup, as detected pedestrians are initialized as embodied agents in the simulation \cite{data_driven}. 
+In 2010, Ju et al. introduced a crowd generation approach, in which crowd formations and individual trajectories were taken from video recordings \cite{mor_crowds}. 
+These measurements were then used to create virtual interpolated crowds of different densities. 
+All data-in-the-loop approaches suffer from interpolation artifacts causing non-realistic behaviour, especially in the limit of high densities.
 
-Data-in-the-model are similar to the aforementioned methods, but have one key difference in their workings: the parameters of an existing simulation model are adjusted based on real pedestrian measurements. This category has much more works reported in the literature review, for all modelling categories considered, such as mechanical, cellular automata and stochastic models \cite{crowd_simulation,interactive_crowd_simulation,data_driven_simulation}. The most travails are encountered in the area of data extraction: it is time-consuming work to capture high-quality pedestrian measurements, moreover for large crowds.
+Data-in-the-model is similar to the aforementioned methods, but have one key difference in their workings: the parameters of an existing simulation model are adjusted based on real pedestrian measurements. This category has much more works reported in the literature review, for all modeling categories considered, such as mechanical, cellular automata and stochastic models \cite{crowd_simulation,interactive_crowd_simulation,data_driven_simulation}. Most travails are encountered in the area of data extraction: it is time-consuming work to capture high-quality pedestrian measurements, moreover for large crowds.
 
 
 % --- --- --- --- --- --- --- --- --- --- --- 
 \section{Challenges}
-This section's scope is to explicitate the research question in a \verb"•"ry simple and synthetic way.
+This section's scope is to explicate the research question in a very simple and synthetic way.
 
 \paragraph{Which is a \emph{good} data-driven mathematical framework that better represents the original data?}
-In this type of system there is a multitude of factors that determinate the path of a single pedestrian. 
+In this type of system, there is a multitude of factors that determine the path of a single pedestrian. 
 Thus, let’s consider a single pedestrian P who walks in a certain space. 
-The first type of interaction it is the structure where P can or cannot walk through; this structure is defined as the whole domain $\Omega$. 
+The first type of interaction is the structure where P can or cannot walk through; this structure is defined as the whole domain $\Omega$. 
 The second interaction is between P and the other pedestrians. 
 Every pedestrian needs a personal space all around; due to the circumstance, there is a variable, and it is not easy to analytically determinate it.
-The third interaction corresponds to random events along the P ’s path; for random events we mean real world events.
+The third interaction corresponds to random events along the P’s path; for random events, we mean real-world events.
 But this is not the end of the list.
-This work scopes is to learn from real datas without necessarily define and separate those factors above; but define a mathematical framework (MF).
-The MF has to be able to determinate if a given trajectory is a common one or not. 
-In other words, the MF collect the information about the more probable paths based on what it was used to generate it.
+This work scope is to learn from real data without necessarily defining and separating those factors above, but define a mathematical framework (MF).
+The MF has to be able to determine if a given trajectory is a common one or not. 
+In other words, the MF collects the information about the more probable paths based on what was used to generate it.
 This is called a \emph{data-driven} model.
 
 
 \paragraph{Which is a good representation for a random combination of trajectories?}
-It is possible to plot every single trajectory, but, increasing the number, this leads to an unreadable representation, which then results to be not functional. 
+It is possible to plot every single trajectory, but, increasing the number, leads to an unreadable representation, which then results to be not functional. 
 It is also possible to plot easily the heatmap of a dataset to analyze the most “walked” areas. 
 Although this second plot choice can consider a great number of trajectories and still be readable, it has a problem: it leads to a representation where the time dependency is completely lost.
-To be able to represent datas that have statistical relevance, it is introduced a 3 dimensional plot that that shows positions in time with the same number of occurrence.
+To be able to represent data that have statistical relevance, it is introduced a 3-dimensional plot that shows positions in time with the same number of occurrences.
 
 
-\paragraph{How to built a proper software library?}
+\paragraph{How to build a proper software library?}
 A crucial part of this work is the writing of the software capable of doing all the necessary steps, from the raw data to the results and the simulated dynamics.
 The idea is to have a Python module that permits to work on the data from a raw structure to the results and the simulated dynamics.
 This software has to be written from scratch, but, given the nature of the Python language, is pretty easy to embed other features.
 The name of this library is \emph{"pathintegralanalytics"} (PIA).
-The PIA takes a raw CSV file, that contains the information about the position in time of the studied trajectories, and returns an object.
-On this object it's possible to work with the PIA module and analyze the trajectories, get the velocities and collect the information to generate the mathematical framework.
+The PIA takes a raw CSV file, that contains the information about the position in time, of the studied trajectories, and returns an object.
+On this object, it's possible to work with the PIA module and analyze the trajectories, get the velocities and collect the information to generate the mathematical framework.
 
 
 
