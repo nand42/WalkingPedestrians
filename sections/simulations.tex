@@ -250,8 +250,40 @@ The (Figure \ref{fig:5pids_D2Q9}) express the values of each direction in correl
 That figure is strictly liked to the matrices showed in (Equation \ref{equation:simplistic_example_transitions}), but this is referred to the real case.
 Even this scenario is simplified because it takes into account only five trajectories.
 For comparison lets consider the entire dataset, the (Figure \ref{fig:TensorA_D2Q9}) shows how complex may became the representation when this transitions are calculated for a grater multitude of real pedestrian trajectories.
+\\Taking into account a Real-life situation as example, with 3210 trajectories.
+The data representation would be as in (Figure \ref{fig:3210_L} - \ref{fig:3210_3x3}).
 
-
+\begin{figure}[ht]
+\begin{minipage}[c]{0.5\linewidth}
+\centering
+\includegraphics[ width=1\textwidth]{fig/3210pids/figure_trainf10_RealData_lines_postTrans_NumP_3210_}
+\captionsetup{width=.8\linewidth}
+\caption{Plot L: 3210 pedestrian's trajectories.}
+\label{fig:3210_L}
+\end{minipage}
+\begin{minipage}[c]{0.5\linewidth}
+\centering
+\includegraphics[ width=1\textwidth]{fig/3210pids/figure_trainf10_RealData_heatmap_postTrans_NumP_3210_}
+\captionsetup{width=.8\linewidth}
+\caption{Plot H: 3210 pedestrian's trajectories.}
+\label{fig:3210_H}
+\end{minipage}
+\vspace*{5mm}
+\begin{minipage}[c]{0.35\linewidth}
+\centering
+\includegraphics[ width=0.95\textwidth]{fig/3210pids/figure_trainf10_RealData_velocity_heatmap_postTrans_NumP_3210_}
+\captionsetup{width=.8\linewidth}
+\caption{Plot V: 3210 pedestrian's trajectories.}
+\label{fig:3210_V}
+\end{minipage}
+\begin{minipage}[c]{0.65\linewidth}
+\centering
+\includegraphics[ width=1\textwidth]{fig/3210pids/figure_trainf10__D2Q9nA_all_3x3}
+\captionsetup{width=.8\linewidth}
+\caption{Plot of D2Q9's $k$-index: 3210 pedestrian's trajectories.}
+\label{fig:3210_3x3}
+\end{minipage}
+\end{figure}
 
 
 
